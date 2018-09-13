@@ -19,6 +19,13 @@ var feltTextureImage;
 var feltTextureImageX;
 var feltTextureImageY;
 
+//Current position of the rectangle
+var rectX;
+var rectY;
+
+//Width and height of rectangle
+var rectWidth;
+var rectHeight;
 
 // preload()
 //
@@ -43,9 +50,13 @@ function setup() {
   clownImageY = height/2;
 
   // Start the felt image perfectly off screen above the canvas
-  feltTextureImageX = width/2;
-  feltTextureImageY = 0 - feltTextureImage.height/2;
+  //feltTextureImageX = width/2;
+  //feltTextureImageY = 0 - feltTextureImage.height/2;
+  rectX = 0;
+  rectY = 0;
 
+  rectWidth = 200;
+  rectHeight = 200;
   // We'll use imageMode CENTER for this script
   imageMode(CENTER);
 }
@@ -58,11 +69,14 @@ function setup() {
 
 function draw() {
 
-  // Move the felt image down by increasing its y position
-  feltTextureImageY += 1;
+  // Move the rectangle left to right by increasing its x position
+  rectX += 1;
 
   // Display the felt image
-  image(feltTextureImage,feltTextureImageX,feltTextureImageY);
+  //image(feltTextureImage,feltTextureImageX,feltTextureImageY);
+
+  // Display the rectangle
+  rect(rectX,rectY,rectWidth, rectHeight);
 
   // Move the clown by moving it 1/10th of its current distance from the mouse
 

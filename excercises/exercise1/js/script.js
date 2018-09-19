@@ -8,16 +8,16 @@
 
 
 // The image of a clown face
-var clownImage;
+//var clownImage;
 // The current position of the clown face
-var clownImageX;
-var clownImageY;
+//var clownImageX;
+//var clownImageY;
 
 // The transparent image of "felt" that wipes down the canvas
-var feltTextureImage;
+//var feltTextureImage;
 // The current position of the transparent image of "felt"
-var feltTextureImageX;
-var feltTextureImageY;
+//var feltTextureImageX;
+//var feltTextureImageY;
 
 //Current position of the rectangle
 var rectX;
@@ -36,6 +36,14 @@ var buttImage;
 var buttImageX;
 var buttImageY;
 
+//The flower image that will follow behind the butterfly
+var flowerImage;
+
+//Current position of the flower image
+var flowerImageX;
+var flowerImageY;
+
+
 // preload()
 //
 // Load the two images we're using before the program starts
@@ -44,9 +52,11 @@ function preload() {
   clownImage = loadImage("assets/images/clown.png");
   feltTextureImage = loadImage("assets/images/black-felt-texture.png");
 // Added the butterfly image
-  buttImage = loadImage("assets/images/butterfly.png")
-}
+  buttImage = loadImage("assets/images/butterfly.png");
 
+//Added flower images
+  flowerImage = loadImage("assets/images/flower.png");
+}
 
 // setup()
 //
@@ -60,8 +70,14 @@ function setup() {
   //clownImageX = width/2;
   //clownImageY = height/2;
 
+  //Start the butterfly at the centre of the canvas
   buttImageX = width/2;
   buttImageY = height/2;
+
+
+  //Start the flower
+  flowerImageX = width/3;
+  flowerImageY = height/3;
 
   // Start the felt image perfectly off screen above the canvas
   //feltTextureImageX = width/2;
@@ -71,6 +87,7 @@ function setup() {
 
   rectWidth = 200;
   rectHeight = 640;
+
   // We'll use imageMode CENTER for this script
   imageMode(CENTER);
 }
@@ -90,6 +107,7 @@ function draw() {
   //image(feltTextureImage,feltTextureImageX,feltTextureImageY);
 
   // Display the rectangle
+  fill(0)
   rect(rectX,rectY,rectWidth, rectHeight);
 
   // Move the clown by moving it 1/10th of its current distance from the mouse
@@ -98,7 +116,7 @@ function draw() {
   //var xDistance = mouseX - clownImageX;
   //var yDistance = mouseY - clownImageY;
 
-  //Calculate the distance in X and Y
+  //Calculate the distance in X and Y for butterfly
   var xDistance = mouseX - buttImageX;
   var yDistance = mouseY - buttImageY;
 
@@ -106,9 +124,17 @@ function draw() {
   //clownImageX = clownImageX + xDistance/10;
   //clownImageY = clownImageY + yDistance/10;
 
-// Add 1/10th of the x and y distance to the clown's current (x,y) location
+  //Add 1/10th of the x and y distance to the butterfly's current (x,y) location
   buttImageX = buttImageX + xDistance/10;
   buttImageY = buttImageY + yDistance/10;
+
+  //Calculate the distance in X and Y for flower
+  var xDistance = buttImageX - flowerImageX;
+  var yDistance = buttImageY - flowerImageY;
+
+  //Add 1/50th of the x and y distance to the butterfly's current (x,y) location
+  flowerImageX = flowerImageX + xDistance/50;
+  flowerImageY = flowerImageY + yDistance/50;
 
   // Display the clown image
   //image(clownImage,clownImageX,clownImageY);
@@ -116,4 +142,7 @@ function draw() {
 
 //Display butterfly image
   image(buttImage,buttImageX,buttImageY);
+
+  //Display flower image
+  image(flowerImage,flowerImageX,flowerImageY);
   }

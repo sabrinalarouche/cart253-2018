@@ -132,7 +132,7 @@ function draw() {
   var xDistance = buttImageX - flowerImageX;
   var yDistance = buttImageY - flowerImageY;
 
-  //Add 1/50th of the x and y distance to the butterfly's current (x,y) location
+  //Add 1/50th of the x and y distance to the flower's current (x,y) location
   flowerImageX = flowerImageX + xDistance/50;
   flowerImageY = flowerImageY + yDistance/50;
 

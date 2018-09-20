@@ -10,7 +10,7 @@ Starter code for exercise 2.
 // The position and size of our avatar circle
 var avatarX;
 var avatarY;
-var avatarSize = 50;
+var avatarSize = 30;
 
 // The speed and velocity of our avatar circle
 var avatarSpeed = 10;
@@ -30,8 +30,20 @@ var enemyVX = 5;
 // How much bigger the enemy circle gets with each successful dodge
 var enemySpeedIncrease = 0.5;
 
+//Enemy image
+var enemyImage;
+
 // How many dodges the player has made
 var dodges = 0;
+
+//Background image
+var backImage;
+
+//Image for the enemy and background
+function preload() {
+  enemyImage = loadImage("assets/images/enemy.png");
+  backImage = loadImage("assets/images/background.jpg");
+}
 
 // setup()
 //
@@ -57,8 +69,12 @@ function setup() {
 // Handle moving the avatar and enemy and checking for dodges and
 // game over situations.
 function draw() {
+
   // A pink background
-  background(255,220,220);
+//background(255,220,220);
+
+//Background image
+  image(backImage,0,0,width,height)
 
 //Display number of dodges
   text('Dodges: '+dodges,30,30);
@@ -149,13 +165,20 @@ function draw() {
   console.log(dodges);
 
   // The player is black
-  fill(0);
+  //fill(0);
+
+  //The player is white
+  fill(255);
+
+
   // Draw the player as a circle
   ellipse(avatarX,avatarY,avatarSize,avatarSize);
 
   // The enemy is red
-  fill(255,0,0);
+  //fill(255,0,0);
   // Draw the enemy as a circle
-  ellipse(enemyX,enemyY,enemySize,enemySize);
+  //ellipse(enemyX,enemyY,enemySize,enemySize);
 
+//Display enemy image
+ image(enemyImage,enemyX,enemyY,enemySize,enemySize);
 }

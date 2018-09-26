@@ -195,6 +195,16 @@ else {
     enemySpeed = enemySpeed + enemySpeedIncrease;
     enemySize = enemySize + enemySizeIncrease;
 
+//Avatar changes speed and size after each dodge at a random amount between (-5,5) ,but never less than 0.
+    var newSpeed = avatarSpeed + random(-5,5);
+    if (newSpeed > 0){
+      avatarSpeed = newSpeed;
+    }
+
+    var newSize = avatarSize + random(-5,5);
+    if (newSize >0){
+      avatarSize = newSize;
+    }
   }
 
   // Display the current number of successful in the console

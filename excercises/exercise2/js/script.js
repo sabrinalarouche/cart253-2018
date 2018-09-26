@@ -11,6 +11,7 @@ Starter code for exercise 2.
 var avatarX;
 var avatarY;
 var avatarSize = 30;
+var avatarColour;
 
 // The speed and velocity of our avatar circle
 var avatarSpeed = 10;
@@ -52,6 +53,8 @@ function setup() {
   // Create our playing area
   createCanvas(500,500);
 
+avatarColour = color(255,255,255)
+
   // Put the avatar in the centre
   avatarX = width/2;
   avatarY = height/2;
@@ -77,6 +80,7 @@ function draw() {
   image(backImage,0,0,width,height)
 
 //Display number of dodges
+  fill(255)
   text('Dodges: '+dodges,30,30);
 
 //Change text size of number of dodges
@@ -134,6 +138,37 @@ function draw() {
     dodges = 0;
   }
 
+//avatarY changes colour 100px away from top and bottom
+//100px from bottom, it turns red
+if(avatarY > 400) {
+  avatarColour = color(255,0,0);
+}
+//100px from top, it turns orange
+else if(avatarY < 100){
+  avatarColour = color(255,165,0);
+}
+//when avatar isn't 100px from top or bottom, it's white
+//else {
+  //avatarColour = color(255,255,255);
+//}
+
+//avatarX changes colour 100px awar from right or Left
+//100px from left, it turns green
+else if(avatarX > 400) {
+  avatarColour = color(0,255,0);
+}
+//100px from right, it turns magenta
+else if(avatarX < 100){
+  avatarColour = color(255,0,255);
+}
+//when avatar isn't 100px from right or left, it's white
+else {
+  avatarColour = color(255,255,255);
+}
+
+
+
+
   // Check if the avatar has gone off the screen (cheating!)
   if (avatarX < 0 || avatarX > width || avatarY < 0 || avatarY > height) {
     // If they went off the screen they lose in the same way as above.
@@ -159,6 +194,7 @@ function draw() {
     // Increase the enemy's speed and size to make the game harder
     enemySpeed = enemySpeed + enemySpeedIncrease;
     enemySize = enemySize + enemySizeIncrease;
+
   }
 
   // Display the current number of successful in the console
@@ -168,7 +204,7 @@ function draw() {
   //fill(0);
 
   //The player is white
-  fill(255);
+  fill(avatarColour);
 
 
   // Draw the player as a circle

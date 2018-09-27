@@ -118,6 +118,11 @@ function setup() {
   rect(width-100,100,200,200);
   image(targetImage,width-100,100);
 
+//Added caption to image
+  textAlign(CENTER);
+  fill(255);
+  textSize(20);
+  text('LOST DOG',width-100,160);
 }
 
 function draw() {

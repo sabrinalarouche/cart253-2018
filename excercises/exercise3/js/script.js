@@ -118,7 +118,19 @@ function setup() {
   targetX = random(0,width);
   targetY = random(0,height);
   // And draw it (this means it will always be on top)
+
+  //While loop that will draw the dog anywhere thats not where the lost dog sign is located.
+  while(targetX < rectCenterX + rectSide/2 &&
+        targetX > rectCenterX - rectSide/2 &&
+        targetY > rectCenterY + rectSide/2 &&
+        targetY < rectCenterY - rectSide/2)
+        {
+  targetX = random(0,width);
+  targetY = random(0,height);
+ }
+
   image(targetImage,targetX,targetY);
+
 
 
   // Display lost dog poster

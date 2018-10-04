@@ -15,6 +15,13 @@ var targetX;
 var targetY;
 var targetImage;
 
+//Giving velocity, speed, and radius to the dog
+var targetVelocityX = 0;
+var targetVelocityY = 0;
+var targetSpeed = 5;
+var targetRadiusX;
+var targetRadiusY;
+
 // The ten decoy images
 var decoyImage1;
 var decoyImage2;
@@ -39,7 +46,6 @@ var gameOver = false;
 var rectCenterX;
 var rectCenterY;
 var rectSide;
-
 
 // Loads the target and decoy images before the program starts
 function preload() {
@@ -71,6 +77,14 @@ function setup() {
  rectCenterY = 100;
  rectSide = 200;
 
+//Define the variables for dog:
+//radius is equal to dog width
+ targetRadiusX = targetImage.width;
+//radius is equal to dog height
+ targetRadiusY = targetImage.height;
+//velocity is equal to speed of 5
+ targetVelocityX = targetSpeed;
+ targetVelocityY = targetSpeed;
 
   // Use a for loop to draw as many decoys as we need
   for (var i = 0; i < numDecoys; i++) {
@@ -157,12 +171,25 @@ function draw() {
     noStroke();
     fill(random(255));
     // Tell them they won!
-    text("YOU WINNED!",width/2,height/2);
+    text("YOU WIN!",width/2,height/2);
 
     noFill();
     stroke(random(255));
     strokeWeight(10);
-    ellipse(targetX,targetY,targetImage.width,targetImage.height);
+/*ellipse(targetX,targetY,targetImage.width,targetImage.height);*/
+
+//If dog collides with the wall, it will bounce off it.
+if (targetX < 0 || targetX > width) {
+  targetVelocityX = -targetVelocityX;
+}
+if (targetY < 0 || targetY > height) {
+  targetVelocityY = -targetVelocityY;
+}
+// Giving movement to the dog
+    targetX = targetX + targetVelocityX;
+    targetY = targetY + targetVelocityY;
+    image(targetImage,targetX,targetY);
+
   }
 }
 

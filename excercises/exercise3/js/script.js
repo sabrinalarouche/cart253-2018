@@ -22,6 +22,9 @@ var targetSpeed = 5;
 var targetRadiusX;
 var targetRadiusY;
 
+//Variable for dog size
+var dogSize;
+
 // The ten decoy images
 var decoyImage1;
 var decoyImage2;
@@ -36,7 +39,9 @@ var decoyImage10;
 
 // The number of decoys to show on the screen, randomly
 // chosen from the decoy images
-var numDecoys = 100;
+
+//Increased number of decoys
+var numDecoys = 300;
 
 // Keep track of whether they've won
 var gameOver = false;
@@ -96,35 +101,39 @@ function setup() {
     // Use the random number to display one of the ten decoy
     // images, each with a 10% chance of being shown
     // We'll talk more about this nice quality of random soon enough
+
+    // Give a random width and height to all the animals, making it more difficult to find the target.
+    var randomSize = random(50,250);
+
     if (r < 0.1) {
-      image(decoyImage1,x,y);
+      image(decoyImage1,x,y,randomSize,randomSize);
     }
     else if (r < 0.2) {
-      image(decoyImage2,x,y);
+      image(decoyImage2,x,y,randomSize,randomSize);
     }
     else if (r < 0.3) {
-      image(decoyImage3,x,y);
+      image(decoyImage3,x,y,randomSize,randomSize);
     }
     else if (r < 0.4) {
-      image(decoyImage4,x,y);
+      image(decoyImage4,x,y,randomSize,randomSize);
     }
     else if (r < 0.5) {
-      image(decoyImage5,x,y);
+      image(decoyImage5,x,y,randomSize,randomSize);
     }
     else if (r < 0.6) {
-      image(decoyImage6,x,y);
+      image(decoyImage6,x,y,randomSize,randomSize);
     }
     else if (r < 0.7) {
-      image(decoyImage7,x,y);
+      image(decoyImage7,x,y,randomSize,randomSize);
     }
     else if (r < 0.8) {
-      image(decoyImage8,x,y);
+      image(decoyImage8,x,y,randomSize,randomSize);
     }
     else if (r < 0.9) {
-      image(decoyImage9,x,y);
+      image(decoyImage9,x,y,randomSize,randomSize);
     }
     else if (r < 1.0) {
-      image(decoyImage10,x,y);
+      image(decoyImage10,x,y,randomSize,randomSize);
     }
   }
 
@@ -142,8 +151,12 @@ function setup() {
   targetX = random(0,width);
   targetY = random(0,height);
  }
+ // Define dogSize variable:
+ // random height and width between 50 and 250
+  dogSize = random(50,250);
 
-  image(targetImage,targetX,targetY);
+//Draw dog
+  image(targetImage,targetX,targetY,dogSize,dogSize);
 
 
 
@@ -188,7 +201,7 @@ if (targetY < 0 || targetY > height) {
 // Giving movement to the dog
     targetX = targetX + targetVelocityX;
     targetY = targetY + targetVelocityY;
-    image(targetImage,targetX,targetY);
+    image(targetImage,targetX,targetY,dogSize,dogSize);
 
   }
 }

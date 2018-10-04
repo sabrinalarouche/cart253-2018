@@ -34,8 +34,13 @@ var numDecoys = 100;
 // Keep track of whether they've won
 var gameOver = false;
 
-// preload()
-//
+
+// Variables for the rectangle for lost dog poster
+var rectCenterX;
+var rectCenterY;
+var rectSide;
+
+
 // Loads the target and decoy images before the program starts
 function preload() {
   targetImage = loadImage("assets/images/animals-target.png");
@@ -61,7 +66,10 @@ function setup() {
   background("#ffff00");
   imageMode(CENTER);
 
-
+//define the variables
+ rectCenterX = width-100;
+ rectCenterY = 100;
+ rectSide = 200;
 
 
   // Use a for loop to draw as many decoys as we need
@@ -112,17 +120,20 @@ function setup() {
   // And draw it (this means it will always be on top)
   image(targetImage,targetX,targetY);
 
-  // Display dog at right corner
+
+  // Display lost dog poster
   rectMode(CENTER);
   fill(0,0,255);
-  rect(width-100,100,200,200);
-  image(targetImage,width-100,100);
+//draw square in upper right corner
+  rect(rectCenterX,rectCenterY,rectSide,rectSide);
+//add dog on top of blue square
+  image(targetImage,rectCenterX,rectCenterY);
 
 //Added caption to image
   textAlign(CENTER);
   fill(255);
   textSize(20);
-  text('LOST DOG',width-100,160);
+  text('LOST DOG',rectCenterX,160);
 }
 
 function draw() {

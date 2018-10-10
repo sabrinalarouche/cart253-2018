@@ -20,6 +20,9 @@ var playerRadius = 25;
 var playerVX = 0;
 var playerVY = 0;
 var playerMaxSpeed = 2;
+//Speed added to playerMaxSpeed when shift is pressed
+var playerSprint = 0.5;
+
 // Player health
 var playerHealth;
 var playerMaxHealth = 255;
@@ -129,9 +132,26 @@ function handleInput() {
   else if (keyIsDown(DOWN_ARROW)) {
     playerVY = playerMaxSpeed;
   }
+
+  else if (keyIsDown(SHIFT)) {
+  // When shift is pressed it will add 0.5 to speed until it reaches 7
+    if (playerMaxSpeed < 7) {
+    playerMaxSpeed += playerSprint;
+    }
+
+  }
+  
   else {
+// If shift isn't pressed the player will move at playerMaxSpeed again
+    playerMaxSpeed = 2;
     playerVY = 0;
   }
+  /*playerVX += playerSprint;*/
+
+
+  /*playerVX = playerSprint;
+  playerVY = playerSprint;*/
+
 }
 
 // movePlayer()

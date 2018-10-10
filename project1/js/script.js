@@ -222,6 +222,13 @@ function checkEating() {
       preyHealth = preyMaxHealth;
       // Track how many prey were eaten
       preyEaten++;
+
+//Add 1 to the radius of the player whenever it eats the prey, with max radius of 75.
+    if (playerRadius < 75)
+      playerRadius = playerRadius + 1;
+      ;
+
+
     }
   }
 }

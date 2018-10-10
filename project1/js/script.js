@@ -140,7 +140,7 @@ function handleInput() {
     }
 
   }
-  
+
   else {
 // If shift isn't pressed the player will move at playerMaxSpeed again
     playerMaxSpeed = 2;
@@ -249,16 +249,21 @@ function movePrey() {
   // Screen wrapping
   if (preyX < 0) {
     preyX += width;
+  //Added random size to be generated for the prey everytime it goes offscreen
+    preyRadius = random(15,30);
   }
   else if (preyX > width) {
     preyX -= width;
+    preyRadius = random(15,30);
   }
 
   if (preyY < 0) {
     preyY += height;
+    preyRadius = random(15,30);
   }
   else if (preyY > height) {
     preyY -= height;
+    preyRadius = random(15,30);
   }
 }
 

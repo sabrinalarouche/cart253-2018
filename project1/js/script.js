@@ -108,6 +108,11 @@ function draw() {
   else {
     showGameOver();
   }
+
+//Display number of prey eaten while game
+  fill(0)
+  text('Prey eaten: '+preyEaten,30,30);
+  textSize(18);
 }
 
 // handleInput()

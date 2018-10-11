@@ -55,8 +55,10 @@ var ty = 0;
 //
 // Sets up the basic elements of the game
 function setup() {
-  createCanvas(500,500);
+  //createCanvas(500,500);
 
+  //Game takes up whole screen
+  createCanvas(windowWidth,windowHeight)
   noStroke();
 
   setupPrey();

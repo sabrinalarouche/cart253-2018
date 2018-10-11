@@ -315,8 +315,14 @@ function drawPrey() {
 function drawPlayer() {
   fill(playerFill,playerHealth);
   //ellipse(playerX,playerY,playerRadius*2);
+  
+  // Player icon fades as it loses health
+  push();
+  var playerAlpha = map(playerHealth,0,255,0,255);
+  console.log (playerAlpha)
+  tint(255,255,255,playerAlpha);
   image(playerImage,playerX,playerY,playerRadius*2,playerRadius*2);
-
+  pop();
 }
 
 // showGameOver()

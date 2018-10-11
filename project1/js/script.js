@@ -61,11 +61,17 @@ var ty = 0;
 //Background image
 var bg;
 
-// Loads player and prey images
+var gameSound;
+var endSound;
+var playOnce = true;
+
+// Loads player and prey images, and audio for the game.
 function preload() {
  playerImage = loadImage("assets/images/predator.png");
  preyImage = loadImage("assets/images/prey.png");
  bg = loadImage("assets/images/wallpaper.jpg")
+ gameSound = new Audio("assets/sounds/Zombie_Game_Looping.mp3");
+ endSound = new Audio("assets/sounds/zombie_moan.mp3");
 }
 
 // setup()
@@ -80,6 +86,10 @@ function setup() {
   noStroke();
   setupPrey();
   setupPlayer();
+
+  //When the game starts so will the gameSound which will play on a loop.
+  gameSound.play();
+  gameSound.loop = true;
 }
 
 // setupPrey()
@@ -128,9 +138,21 @@ function draw() {
       fill(0)
       text('Prey eaten: '+preyEaten,30,30);
       textSize(18);
+//gameSound will play as the game is going on, endSound will be on pause.
+      gameSound.play();
+      endSound.pause();
+      playOnce = true;
   }
+//When the game is over
   else {
     showGameOver();
+//gameSound will pause
+    gameSound.pause();
+//endSound will play but only once.
+  if (playOnce === true){
+    endSound.play();
+    playOnce = false;
+  }
   }
 
 }

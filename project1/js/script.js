@@ -8,6 +8,13 @@ A simple game of cat and mouse.
 Physics-based movement, keyboard controls, health/stamina,
 sprinting, random movement, screen wrap.
 
+Credit:
+player icon: http://www.stickpng.com/img/holidays/halloween/zombie-icon-from-zombie-smasher-defense/
+prey icon: https://www.kisspng.com/png-brain-cartoon-drawing-clip-art-1935228/
+gameSound: https://soundimage.org/horrorsurreal/
+endSound: http://soundbible.com/1035-Zombie-Moan.html/
+background: https://www.shutterstock.com/video/search/silence-cartoon/
+font: Google fonts
 ******************************************************/
 
 // Track whether the game is over
@@ -135,9 +142,10 @@ function draw() {
     drawPlayer();
 
     //Display number of prey eaten while game
-      fill(0)
-      text('Prey eaten: '+preyEaten,30,30);
-      textSize(18);
+      fill(255)
+      textFont("Roboto");
+      text('Prey eaten: '+preyEaten,30,60);
+      textSize(20);
 //gameSound will play as the game is going on, endSound will be on pause.
       gameSound.play();
       endSound.pause();
@@ -356,7 +364,7 @@ function drawPlayer() {
 //
 // Display text about the game being over!
 function showGameOver() {
-  textSize(32);
+  textSize(50);
   textAlign(CENTER,CENTER);
   fill(0);
   var gameOverText = "GAME OVER\n";

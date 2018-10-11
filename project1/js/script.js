@@ -226,11 +226,17 @@ function checkEating() {
     // Reduce the prey health
     preyHealth = constrain(preyHealth - eatHealth,0,preyMaxHealth);
 
+//Prey gets faster everytime it is eaten until speed of 10.
+if(preyMaxSpeed < 10){
+    preyMaxSpeed = preyMaxSpeed + 0.1;
+}
+
     // Check if the prey died
     if (preyHealth === 0) {
       // Move the "new" prey to a random position
       /*preyX = random(0,width);
       preyY = random(0,height);*/
+
 
       // moving prey x and y according to noise instead of random
       preyX = noise(tx) * width;

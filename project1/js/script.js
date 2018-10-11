@@ -16,10 +16,14 @@ var gameOver = false;
 // Player position, size, velocity
 var playerX;
 var playerY;
-var playerRadius = 25;
+var playerRadius = 75;
 var playerVX = 0;
 var playerVY = 0;
 var playerMaxSpeed = 2;
+
+//Player icon
+var playerImage;
+
 //Speed added to playerMaxSpeed when shift is pressed
 var playerSprint = 0.5;
 
@@ -32,10 +36,13 @@ var playerFill = 50;
 // Prey position, size, velocity
 var preyX;
 var preyY;
-var preyRadius = 25;
+var preyRadius = 75;
 var preyVX;
 var preyVY;
 var preyMaxSpeed = 4;
+
+//Prey icon
+var preyImage;
 // Prey health
 var preyHealth;
 var preyMaxHealth = 100;
@@ -50,6 +57,12 @@ var preyEaten = 0;
 // time variables
 var tx = 0;
 var ty = 0;
+
+// Loads player and prey images
+function preload() {
+ playerImage = loadImage("assets/images/predator.png");
+ preyImage = loadImage("assets/images/prey.png");
+}
 
 // setup()
 //
@@ -231,7 +244,7 @@ function checkEating() {
       preyEaten++;
 
 //Add 1 to the radius of the player whenever it eats the prey, with max radius of 75.
-    if (playerRadius < 75)
+    if (playerRadius < 90)
       playerRadius = playerRadius + 1;
       ;
 
@@ -264,20 +277,20 @@ function movePrey() {
   if (preyX < 0) {
     preyX += width;
   //Added random size to be generated for the prey everytime it goes offscreen
-    preyRadius = random(15,30);
+    preyRadius = random(35,75);
   }
   else if (preyX > width) {
     preyX -= width;
-    preyRadius = random(15,30);
+    preyRadius = random(35,75);
   }
 
   if (preyY < 0) {
     preyY += height;
-    preyRadius = random(15,30);
+    preyRadius = random(35,75);
   }
   else if (preyY > height) {
     preyY -= height;
-    preyRadius = random(15,30);
+    preyRadius = random(35,75);
   }
 }
 
@@ -286,7 +299,8 @@ function movePrey() {
 // Draw the prey as an ellipse with alpha based on health
 function drawPrey() {
   fill(preyFill,preyHealth);
-  ellipse(preyX,preyY,preyRadius*2);
+  //ellipse(preyX,preyY,preyRadius*2);
+  image(preyImage,preyX,preyY,preyRadius*2,preyRadius*2);
 }
 
 // drawPlayer()
@@ -294,7 +308,9 @@ function drawPrey() {
 // Draw the player as an ellipse with alpha based on health
 function drawPlayer() {
   fill(playerFill,playerHealth);
-  ellipse(playerX,playerY,playerRadius*2);
+  //ellipse(playerX,playerY,playerRadius*2);
+  image(playerImage,playerX,playerY,playerRadius*2,playerRadius*2);
+
 }
 
 // showGameOver()

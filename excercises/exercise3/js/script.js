@@ -74,7 +74,7 @@ function preload() {
 // of decoys in random positions, then the target
 function setup() {
   createCanvas(windowWidth,windowHeight);
-  background("#ffff00");
+  backgroundImage();
   imageMode(CENTER);
 
 //define the variables

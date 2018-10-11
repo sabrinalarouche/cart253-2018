@@ -58,10 +58,14 @@ var preyEaten = 0;
 var tx = 0;
 var ty = 0;
 
+//Background image
+var bg;
+
 // Loads player and prey images
 function preload() {
  playerImage = loadImage("assets/images/predator.png");
  preyImage = loadImage("assets/images/prey.png");
+ bg = loadImage("assets/images/wallpaper.jpg")
 }
 
 // setup()
@@ -72,8 +76,8 @@ function setup() {
 
   //Game takes up whole screen
   createCanvas(windowWidth,windowHeight)
-  noStroke();
 
+  noStroke();
   setupPrey();
   setupPlayer();
 }
@@ -106,7 +110,7 @@ function setupPlayer() {
 // displays the two agents.
 // When the game is over, shows the game over screen.
 function draw() {
-  background(100,100,200);
+  background(bg);
 
   if (!gameOver) {
     handleInput();

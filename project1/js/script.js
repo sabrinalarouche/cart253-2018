@@ -119,15 +119,16 @@ function draw() {
 
     drawPrey();
     drawPlayer();
+
+    //Display number of prey eaten while game
+      fill(0)
+      text('Prey eaten: '+preyEaten,30,30);
+      textSize(18);
   }
   else {
     showGameOver();
   }
 
-//Display number of prey eaten while game
-  fill(0)
-  text('Prey eaten: '+preyEaten,30,30);
-  textSize(18);
 }
 
 // handleInput()
@@ -315,7 +316,7 @@ function drawPrey() {
 function drawPlayer() {
   fill(playerFill,playerHealth);
   //ellipse(playerX,playerY,playerRadius*2);
-  
+
   // Player icon fades as it loses health
   push();
   var playerAlpha = map(playerHealth,0,255,0,255);

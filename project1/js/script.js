@@ -26,7 +26,7 @@ var playerY;
 var playerRadius = 75;
 var playerVX = 0;
 var playerVY = 0;
-var playerMaxSpeed = 2;
+var playerMaxSpeed = 4;
 
 //Player icon
 var playerImage;
@@ -46,7 +46,7 @@ var preyY;
 var preyRadius = 75;
 var preyVX;
 var preyVY;
-var preyMaxSpeed = 4;
+var preyMaxSpeed = 6;
 
 //Prey icon
 var preyImage;
@@ -203,7 +203,7 @@ function handleInput() {
 
   else {
 // If shift isn't pressed the player will move at playerMaxSpeed again
-    playerMaxSpeed = 2;
+    playerMaxSpeed = 4;
     playerVY = 0;
   }
   /*playerVX += playerSprint;*/

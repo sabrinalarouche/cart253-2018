@@ -145,7 +145,12 @@ function draw() {
       fill(255)
       textFont("Roboto");
       text('Prey eaten: '+preyEaten,30,60);
-      textSize(20);
+      textSize(25);
+
+      fill(255)
+      textFont("Roboto");
+      text('(Use keys to move and shift to sprint)',200,60);
+      textSize(25);
 //gameSound will play as the game is going on, endSound will be on pause.
       gameSound.play();
       endSound.pause();

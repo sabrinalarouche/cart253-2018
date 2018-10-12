@@ -74,7 +74,7 @@ var playOnce = true;
 
 // Loads player and prey images, and audio for the game.
 function preload() {
- playerImage = loadImage("assets/images/player.png");
+ playerImage = loadImage("assets/images/predator.png");
  preyImage = loadImage("assets/images/prey.png");
  bg = loadImage("assets/images/wallpaper.jpg")
  gameSound = new Audio("assets/sounds/Zombie_Game_Looping.mp3");

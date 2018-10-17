@@ -15,11 +15,23 @@ var fgColor = 255;
 var ball = {
   x: 0,
   y: 0,
-  size: 20,
+///////// NEW /////////
+  size: 40, //made ball bigger
+///////// END NEW /////////
   vx: 0,
   vy: 0,
-  speed: 5
+  speed: 5,
+///////// NEW /////////
+  picture: 0,
+  imageChosen: 1
+///////// END NEW /////////
 }
+///////// NEW /////////
+//Variables for ball textures
+var textureImage1;
+var textureImage2;
+var textureImage3;
+///////// END NEW /////////
 
 // PADDLES
 
@@ -79,6 +91,12 @@ var beepSFX;
 // Loads the beep audio for the sound of bouncing
 function preload() {
   beepSFX = new Audio("assets/sounds/beep.wav");
+///////// NEW /////////
+// define ball texture images
+  textureImage1 = loadImage("assets/images/text1.png");
+  textureImage2 = loadImage("assets/images/text2.png");
+  textureImage3 = loadImage("assets/images/text3.png");
+///////// END NEW /////////
 }
 
 // setup()
@@ -127,6 +145,10 @@ function setupBall() {
   ball.y = height/2;
   ball.vx = ball.speed;
   ball.vy = ball.speed;
+  ///////// NEW /////////
+  //Initial ball texture
+  ball.picture = textureImage1;
+  ///////// END NEW /////////
 }
 
 // draw()
@@ -257,6 +279,22 @@ function handleBallPaddleCollision(paddle) {
     if (ballLeft < paddleRight && ballRight > paddleLeft) {
       // Then the ball is touching the paddle so reverse its vx
       ball.vx = -ball.vx;
+///////// NEW /////////
+//Change ball texture whenever it hits the paddle
+// but never to the same texture it already is.
+  let randomX = Math.floor (random(1,4));
+  while (ball.imageChosen == randomX){
+    randomX = Math.floor (random(1,4));
+  }
+  ball.imageChosen = randomX;
+// Define the random number generated
+if (ball.imageChosen == 1)
+  ball.picture = textureImage1
+if (ball.imageChosen == 2)
+  ball.picture = textureImage2
+if (ball.imageChosen == 3)
+    ball.picture = textureImage3
+///////// END NEW /////////
       // Play our bouncing sound effect by rewinding and then playing
       beepSFX.currentTime = 0;
       beepSFX.play();
@@ -314,8 +352,10 @@ function handleBallOffScreen() {
 function displayBall() {
 ///////// NEW /////////
   fill(255); //gives ball fill of white so it doesn't change like paddles.
+  //make ball texture image
+  image(ball.picture,ball.x-ball.size/2,ball.y-ball.size/2,ball.size,ball.size)
 ///////// END NEW /////////
-  rect(ball.x,ball.y,ball.size,ball.size);
+  /*rect(ball.x,ball.y,ball.size,ball.size);*/
 }
 
 // displayPaddle(paddle)

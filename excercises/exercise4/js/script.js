@@ -276,21 +276,21 @@ function handleBallOffScreen() {
 
 ///////// NEW /////////
 //When the ball goes off the screen on the right, leftPaddle gets a point.
-  if (ballRight > width){
+  if (ballLeft > width){
     leftPaddle.score = leftPaddle.score + 1;
 //When leftPaddle gets a point, it changes to a random colour.
     leftPaddle.colourPaddle = color(random(255),random(255),random(255));
 //When leftPaddle gets a point, ball launches left
-    ball.vx = random(-10,-5);
+    ball.vx = random(-5,-3);
   }
 
   //When the ball goes off the screen on the left, rightPaddle gets a point.
-  if (ballLeft < 0){
+  if (ballRight < 0){
     rightPaddle.score = rightPaddle.score + 1;
   //When rightPaddle gets a point, it changes to a random colour.
     rightPaddle.colourPaddle = color(random(255),random(255),random(255));
   //When rightPaddle gets a point, ball launches left
-    ball.vx = random(5,10);
+    ball.vx = random(3,5);
   }
 ///////// END NEW /////////
 

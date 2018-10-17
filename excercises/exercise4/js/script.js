@@ -280,6 +280,8 @@ function handleBallOffScreen() {
     leftPaddle.score = leftPaddle.score + 1;
 //When leftPaddle gets a point, it changes to a random colour.
     leftPaddle.colourPaddle = color(random(255),random(255),random(255));
+//When leftPaddle gets a point, ball launches left
+    ball.vx = random(-10,-5);
   }
 
   //When the ball goes off the screen on the left, rightPaddle gets a point.
@@ -287,6 +289,8 @@ function handleBallOffScreen() {
     rightPaddle.score = rightPaddle.score + 1;
   //When rightPaddle gets a point, it changes to a random colour.
     rightPaddle.colourPaddle = color(random(255),random(255),random(255));
+  //When rightPaddle gets a point, ball launches left
+    ball.vx = random(5,10);
   }
 ///////// END NEW /////////
 
@@ -322,5 +326,4 @@ function displayPaddle(paddle) {
   fill(paddle.colourPaddle); //gives paddles fill
 ///////// END NEW /////////
   rect(paddle.x,paddle.y,paddle.w,paddle.h);
-
 }

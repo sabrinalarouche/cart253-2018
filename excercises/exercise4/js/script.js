@@ -331,9 +331,6 @@ function handleBallOffScreen() {
 //When leftPaddle gets a point, it changes to a random colour.
     leftPaddle.colourPaddle = color(random(255),random(255),random(255));
 //When leftPaddle gets a point, ball launches left
-    ball.vx = random(-5,-3);
-//launches at a random y velocity as it goes towards left
-    ball.vy = random(-4,4);
   }
 
   //When the ball goes off the screen on the left, rightPaddle gets a point.
@@ -341,26 +338,32 @@ function handleBallOffScreen() {
     rightPaddle.score = rightPaddle.score + 1;
   //When rightPaddle gets a point, it changes to a random colour.
     rightPaddle.colourPaddle = color(random(255),random(255),random(255));
+  }
+
+//call reset
+reset(ballRight,ballLeft);
+  }
+
+//reset function to handle ball launching towards winner at random velocity
+function reset(ballRight,ballLeft) {
+  if(ballRight < 0 || ballLeft > width){
+if (ballRight < 0){
   //When rightPaddle gets a point, ball launches right
     ball.vx = random(3,5);
     //launches at a random y velocity as it goes towards right
     ball.vy = random(-4,4);
-  }
-///////// END NEW /////////
-
-  // Check for ball going off the sides
-  if (ballRight < 0 || ballLeft > width) {
-    // If it went off either side, reset it to the centre
-    ball.x = width/2;
-    ball.y = height/2;
-    // NOTE that we don't change its velocity here so it just
-    // carries on moving with the same velocity after its
-    // position is reset.
-    // This is where we would count points etc!
-
-
-  }
 }
+if (ballLeft > width){
+  //When leftPaddle gets a point, ball launches left
+      ball.vx = random(-5,-3);
+  //launches at a random y velocity as it goes towards left
+      ball.vy = random(-4,4);
+}
+      ball.x = width/2;
+      ball.y = height/2;
+}
+}
+///////// END NEW /////////
 
 // displayBall()
 //

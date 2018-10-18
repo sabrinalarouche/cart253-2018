@@ -96,6 +96,8 @@ function preload() {
   textureImage1 = loadImage("assets/images/text1.png");
   textureImage2 = loadImage("assets/images/text2.png");
   textureImage3 = loadImage("assets/images/text3.png");
+  textureImage4 = loadImage("assets/images/text4.png");
+  textureImage5 = loadImage("assets/images/text5.png");
 ///////// END NEW /////////
 }
 
@@ -282,18 +284,22 @@ function handleBallPaddleCollision(paddle) {
 ///////// NEW /////////
 //Change ball texture whenever it hits the paddle
 // but never to the same texture it already is.
-  let randomX = Math.floor (random(1,4));
+  let randomX = Math.floor (random(1,5));
   while (ball.imageChosen == randomX){
-    randomX = Math.floor (random(1,4));
+    randomX = Math.floor (random(1,5));
   }
   ball.imageChosen = randomX;
 // Define the random number generated
 if (ball.imageChosen == 1)
-  ball.picture = textureImage1
+  ball.picture = textureImage1;
 if (ball.imageChosen == 2)
-  ball.picture = textureImage2
+  ball.picture = textureImage2;
 if (ball.imageChosen == 3)
-    ball.picture = textureImage3
+    ball.picture = textureImage3;
+if (ball.imageChosen == 4)
+    ball.picture = textureImage4;
+if (ball.imageChosen == 5)
+    ball.picture = textureImage5;
 ///////// END NEW /////////
       // Play our bouncing sound effect by rewinding and then playing
       beepSFX.currentTime = 0;

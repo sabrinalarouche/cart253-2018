@@ -85,13 +85,22 @@ var rightPaddle = {
 
 // A variable to hold the beep sound we will play on bouncing
 var beepSFX;
-
+///////// NEW /////////
+//variables for need audio sounds
+var gruntSFX;
+var crowdSFX;
+var crowd2SFX;
+///////// END NEW /////////
 // preload()
 //
 // Loads the beep audio for the sound of bouncing
 function preload() {
   beepSFX = new Audio("assets/sounds/beep.wav");
 ///////// NEW /////////
+//added audio
+  gruntSFX = new Audio("assets/sounds/grunt.mp3");
+  crowdSFX = new Audio("assets/sounds/crowd.mp3");
+  crowd2SFX = new Audio("assets/sounds/crowd2.mp3");
 // define ball texture images
   textureImage1 = loadImage("assets/images/text1.png");
   textureImage2 = loadImage("assets/images/text2.png");
@@ -283,7 +292,10 @@ function handleBallPaddleCollision(paddle) {
     if (ballLeft < paddleRight && ballRight > paddleLeft) {
       // Then the ball is touching the paddle so reverse its vx
       ball.vx = -ball.vx;
+      beepSFX.currentTime = 0;
 ///////// NEW /////////
+//added grunt sound whenever the ball hits the paddle
+      gruntSFX.play();
 //Change ball texture whenever it hits the paddle
 // but never to the same texture it already is.
   let randomX = Math.floor (random(1,7));
@@ -308,8 +320,8 @@ if (ball.imageChosen == 7)
     ball.picture = textureImage7;
 ///////// END NEW /////////
       // Play our bouncing sound effect by rewinding and then playing
-      beepSFX.currentTime = 0;
-      beepSFX.play();
+    /*  beepSFX.currentTime = 0;
+      beepSFX.play();*/
     }
   }
 }
@@ -325,16 +337,22 @@ function handleBallOffScreen() {
   var ballRight = ball.x + ball.size/2;
 
 ///////// NEW /////////
-//When the ball goes off the screen on the right, leftPaddle gets a point.
   if (ballLeft > width){
+//when ball goes off right side of screen, audio of one crowd cheering plays.
+    beepSFX.currentTime = 0;
+    crowdSFX.play();
+//When the ball goes off the screen on the right, leftPaddle gets a point.
     leftPaddle.score = leftPaddle.score + 1;
 //When leftPaddle gets a point, it changes to a random colour.
     leftPaddle.colourPaddle = color(random(255),random(255),random(255));
 //When leftPaddle gets a point, ball launches left
   }
 
-  //When the ball goes off the screen on the left, rightPaddle gets a point.
   if (ballRight < 0){
+  //when ball goes off left side of screen, audio of a second crowd cheering plays.
+    beepSFX.currentTime = 0;
+    crowd2SFX.play();
+  //When the ball goes off the screen on the left, rightPaddle gets a point.
     rightPaddle.score = rightPaddle.score + 1;
   //When rightPaddle gets a point, it changes to a random colour.
     rightPaddle.colourPaddle = color(random(255),random(255),random(255));

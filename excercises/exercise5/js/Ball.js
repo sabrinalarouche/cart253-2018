@@ -14,6 +14,11 @@ function Ball(x,y,vx,vy,size,speed) {
   this.vy = vy;
   this.size = size;
   this.speed = speed;
+  ///////// NEW /////////
+  this.imageChosen = 1;
+  //Initial ball texture
+  this.picture = textureImage1;
+  ///////// END NEW /////////
 }
 
 // update()
@@ -32,6 +37,11 @@ Ball.prototype.update = function () {
   // Check for touching upper or lower edge and reverse velocity if so
   if (this.y === 0 || this.y + this.size === height) {
     this.vy = -this.vy;
+///////// NEW /////////
+  // Play our bouncing sound effect by rewinding and then playing
+    beepSFX.currentTime = 0;
+    beepSFX.play();
+///////// END NEW /////////
   }
 }
 
@@ -44,14 +54,20 @@ Ball.prototype.isOffScreen = function () {
 ///////// NEW /////////
 //check if ball goes off right side
   if (this.x > width) {
+//when ball goes off right side of screen, audio of one crowd cheering plays.
+  beepSFX.currentTime = 0;
+  crowdSFX.play();
     return 'r';
-
   }
 //check if ball goes off left side
   if (this.x + this.size < 0) {
+  //when ball goes off left side of screen, audio of a second crowd cheering plays.
+  beepSFX.currentTime = 0;
+  crowd2SFX.play();
     return 'l';
   }
   else {
+  //when the ball is neither off the left or right side
     return 'n';
   }
 ///////// END NEW /////////
@@ -62,7 +78,10 @@ Ball.prototype.isOffScreen = function () {
 // Draw the ball as a rectangle on the screen
 Ball.prototype.display = function () {
   fill(255);
-  rect(this.x,this.y,this.size,this.size);
+  ///////// NEW /////////
+  //make ball a texture image
+  image(this.picture,this.x,this.y,this.size,this.size);
+  ///////// NEW /////////
 }
 
 // handleCollision(paddle)
@@ -79,6 +98,32 @@ Ball.prototype.handleCollision = function(paddle) {
       this.y -= this.vy;
       // Reverse x velocity to bounce
       this.vx = -this.vx;
+      ///////// NEW /////////
+      //added grunt sound whenever the ball hits the paddle
+       gruntSFX.play();
+      //Change ball texture whenever it hits the paddle
+      // but never to the same texture it already is.
+        let randomX = Math.floor (random(1,7));
+        while (this.imageChosen == randomX){
+          randomX = Math.floor (random(1,7));
+        }
+        this.imageChosen = randomX;
+      // Define the random number generated
+      if (this.imageChosen == 1)
+        this.picture = textureImage1;
+      if (this.imageChosen == 2)
+        this.picture = textureImage2;
+      if (this.imageChosen == 3)
+          this.picture = textureImage3;
+      if (this.imageChosen == 4)
+          this.picture = textureImage4;
+      if (this.imageChosen == 5)
+          this.picture = textureImage5;
+      if (this.imageChosen == 6)
+          this.picture = textureImage6;
+      if (this.imageChosen == 7)
+          this.picture = textureImage7;
+      ///////// END NEW /////////
     }
   }
 }

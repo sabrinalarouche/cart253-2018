@@ -13,19 +13,55 @@
 var ball;
 var leftPaddle;
 var rightPaddle;
+var textureImage1;
+var textureImage2;
+var textureImage3;
 
+// A variable to hold the beep sound we will play on bouncing
+var beepSFX;
+///////// NEW /////////
+//variables for need audio sounds
+var gruntSFX;
+var crowdSFX;
+var crowd2SFX;
+///////// END NEW /////////
+// preload()
+//
+// Loads the beep audio for the sound of bouncing
+function preload() {
+  beepSFX = new Audio("assets/sounds/beep.wav");
+///////// NEW /////////
+//added audio
+  gruntSFX = new Audio("assets/sounds/grunt.mp3");
+  crowdSFX = new Audio("assets/sounds/crowd.mp3");
+  crowd2SFX = new Audio("assets/sounds/crowd2.mp3");
+// define ball texture images
+  textureImage1 = loadImage("assets/images/text1.png");
+  textureImage2 = loadImage("assets/images/text2.png");
+  textureImage3 = loadImage("assets/images/text3.png");
+  textureImage4 = loadImage("assets/images/text4.png");
+  textureImage5 = loadImage("assets/images/text5.png");
+  textureImage6 = loadImage("assets/images/text6.png");
+  textureImage7 = loadImage("assets/images/text7.png");
+///////// END NEW /////////
+}
 // setup()
 //
 // Creates the ball and paddles
 function setup() {
   createCanvas(640,480);
   // Create a ball
-  ball = new Ball(width/2,height/2,5,5,10,5);
+  ball = new Ball(width/2,height/2,5,5,40,5);
   // Create the right paddle with UP and DOWN as controls
-  rightPaddle = new Paddle(width-10,height/2,10,60,10,DOWN_ARROW,UP_ARROW);
+  rightPaddle = new Paddle(width-50,height/2,20,60,10,DOWN_ARROW,UP_ARROW);
   // Create the left paddle with W and S as controls
   // Keycodes 83 and 87 are W and S respectively
-  leftPaddle = new Paddle(0,height/2,10,60,10,83,87);
+  leftPaddle = new Paddle(50,height/2,20,60,10,83,87);
+
+  gruntSFX.pause();
+  crowdSFX.pause();
+  crowd2SFX.pause();
+
 }
 
 // draw()

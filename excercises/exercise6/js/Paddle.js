@@ -33,6 +33,7 @@ Paddle.prototype.handleInput = function() {
     this.vy = -this.speed;
   }
 //////////////// FIXED
+  //////////////// FIXED
   else if (keyIsDown(this.downKey)) {
     this.vy = -this.speed;
   }
@@ -44,7 +45,8 @@ Paddle.prototype.handleInput = function() {
 Paddle.prototype.update = function() {
   this.y += this.vy;
 //////////////// FIXED
-  this.y = constraint(this.y,0,height-this.h);
+  //////////////// FIXED
+  this.y = constrain(this.y,0,height-this.h);
 }
 
 // display()

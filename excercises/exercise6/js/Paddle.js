@@ -27,7 +27,8 @@ function Paddle(x,y,w,h,speed,downKey,upKey) {
 // appropriately
 //////////////// FIXED
 Paddle.prototype.handleInput = function() {
-  if (keyDown(upKey)) {
+//////////////// FIXED
+  if (keyIsDown(upKey)) {
     this.vy = -this.speed;
   }
   else if (keyDown(downKey)) {

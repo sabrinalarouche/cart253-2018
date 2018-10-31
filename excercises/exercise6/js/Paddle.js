@@ -30,7 +30,8 @@ Paddle.prototype.handleInput = function() {
 //////////////// FIXED
   //////////////// FIXED
   if (keyIsDown(this.upKey)) {
-    this.vy = -this.speed;
+  //////////////// FIXED
+    this.vy = this.speed;
   }
 //////////////// FIXED
   //////////////// FIXED

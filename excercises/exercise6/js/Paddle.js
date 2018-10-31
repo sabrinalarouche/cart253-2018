@@ -38,6 +38,10 @@ Paddle.prototype.handleInput = function() {
   else if (keyIsDown(this.downKey)) {
     this.vy = -this.speed;
   }
+  else {
+  //////////////// FIXED
+    this.vy = 0;
+  }
 }
 
 // update()

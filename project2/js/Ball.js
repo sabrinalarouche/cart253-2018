@@ -41,12 +41,20 @@ Ball.prototype.update = function () {
 // Otherwise it returns false.
 Ball.prototype.isOffScreen = function () {
   // Check for going off screen and reset if so
-  if (this.x + this.size < 0 || this.x > width) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  ///////// NEW /////////
+  //check if ball goes off right side
+    if (this.x > width) {
+      return 'r';
+    }
+  //check if ball goes off left side
+    if (this.x + this.size < 0) {
+      return 'l';
+    }
+    else {
+    //when the ball is neither off the left or right side
+      return 'n';
+    }
+  ///////// END NEW /////////
 }
 
 // display()

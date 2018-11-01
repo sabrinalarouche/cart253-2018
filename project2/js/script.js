@@ -42,9 +42,25 @@ function draw() {
   leftPaddle.update();
   rightPaddle.update();
 
-  if (ball.isOffScreen()) {
-    ball.reset();
-  }
+  //Display number player score
+    fill(255)
+    text('Player 1: '+leftPaddle.score,30,30);
+    fill(255)
+    text('Player 2: '+rightPaddle.score,540,30);
+
+  ///////// NEW /////////
+  var ballOffScreen = ball.isOffScreen();
+  //if the ball goes off the left, rightPaddle gets a point.
+    if (ballOffScreen === 'l') {
+      rightPaddle.score += 1;
+      ball.reset();
+    }
+  //if the ball goes off the right, leftPaddle gets a point.
+    if (ballOffScreen === 'r') {
+      leftPaddle.score += 1;
+      ball.reset();
+    }
+  ///////// END NEW /////////
 
   ball.handleCollision(leftPaddle);
   ball.handleCollision(rightPaddle);

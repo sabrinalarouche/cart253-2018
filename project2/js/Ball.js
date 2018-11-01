@@ -44,10 +44,16 @@ Ball.prototype.isOffScreen = function () {
   ///////// NEW /////////
   //check if ball goes off right side
     if (this.x > width) {
+  //left paddle will turn green when it gets a point and right paddle red
+      leftPaddle.colourPaddle = color(0,255,0);
+      rightPaddle.colourPaddle = color(255,0,0);
       return 'r';
     }
   //check if ball goes off left side
     if (this.x + this.size < 0) {
+  //right paddle will turn green when it gets a point and left paddle red
+      rightPaddle.colourPaddle = color(0,255,0);
+      leftPaddle.colourPaddle = color(255,0,0);
       return 'l';
     }
     else {

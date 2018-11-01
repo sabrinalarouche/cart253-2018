@@ -15,6 +15,7 @@ var leftPaddle;
 var rightPaddle;
 ///////// NEW /////////
 var state = "TITLE";
+var winner
 ///////// END NEW /////////
 // setup()
 //
@@ -65,7 +66,7 @@ function draw() {
     // Font size goes down
     textSize(16);
     // Display the instructions
-    text("Press SPACE to play\nPlayer 1 use WASD to move\n Player 2 use ARROWS to move\n First player to 11 points wins!",width/2,3*height/4);
+    text("Press SPACE to play\nPlayer 1: WASD to move\n Player 2: ARROWS to move\n First player to 11 points wins!",width/2,3*height/4);
     pop();
 
     // Plays game if space is pressed
@@ -95,11 +96,19 @@ function displayGame() {
     if (ballOffScreen === 'l') {
       rightPaddle.score += 1;
       ball.reset();
+    //when player 1 has 11 points, it is the winner
+    if (rightPaddle.score == 11){
+      winner = "Player 1"
+    }
     }
   //if the ball goes off the right, leftPaddle gets a point.
     if (ballOffScreen === 'r') {
       leftPaddle.score += 1;
       ball.reset();
+    //when player 2 has 11 points, it is the winner
+    if (leftPaddle.score == 11){
+      winner = "Player 2"
+      }
     }
   ///////// END NEW /////////
 
@@ -109,5 +118,23 @@ function displayGame() {
   ball.display();
   leftPaddle.display();
   rightPaddle.display();
+///////// NEW /////////
+//if either player 1 or player 2 has 11 points,
+//the state of the game will be 'GAME OVER'
+  if (leftPaddle.score === 11 || rightPaddle.score === 11){
+    state = "GAME OVER";
+  }
 }
 }
+//When the state is 'GAME OVER', it will display the following
+function displayGameOver() {
+  push();
+  textAlign(CENTER,CENTER);
+  textSize(32);
+  fill(255);
+  stroke(255);
+  //Text will display which player is the winner
+  text(winner+' is the winner!',width/2,height/2);
+  pop();
+}
+///////// END NEW /////////

@@ -13,7 +13,9 @@
 var ball;
 var leftPaddle;
 var rightPaddle;
-
+///////// NEW /////////
+var state = "TITLE";
+///////// END NEW /////////
 // setup()
 //
 // Creates the ball and paddles
@@ -35,6 +37,45 @@ function setup() {
 function draw() {
   background(0);
 
+///////// NEW /////////
+//Establish the state of the game and what will be displayed
+  switch (state) {
+    case "TITLE":
+    displayTitle();
+    break;
+
+    case "GAME":
+    displayGame();
+    break;
+
+    case "GAME OVER":
+    displayGameOver();
+    break;
+  }
+  //Introduction page:
+  function displayTitle() {
+    // Set up all the styling elements
+    push();
+    textAlign(CENTER,CENTER);
+    textSize(32);
+    fill(255);
+    stroke(255);
+    // Display the text
+    text("EXTREME PONG!",width/2,height/2);
+    // Font size goes down
+    textSize(16);
+    // Display the instructions
+    text("Press SPACE to play\nPlayer 1 use WASD to move\n Player 2 use ARROWS to move\n First player to 11 points wins!",width/2,3*height/4);
+    pop();
+
+    // Plays game if space is pressed
+    if (keyIsPressed && key === ' ') {
+      state = "GAME";
+    }
+  }
+//When the state is 'Game', it will display the following
+function displayGame() {
+///////// END NEW /////////
   leftPaddle.handleInput();
   rightPaddle.handleInput();
 
@@ -68,4 +109,5 @@ function draw() {
   ball.display();
   leftPaddle.display();
   rightPaddle.display();
+}
 }

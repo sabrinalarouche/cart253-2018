@@ -93,6 +93,21 @@ Ball.prototype.handleCollision = function(paddle) {
 //
 // Set position back to the middle of the screen
 Ball.prototype.reset = function () {
+  ///////// NEW /////////
+  //reset function to handle ball launching towards winner at random velocity
+  if (this.x + this.size < 0){
+    //When rightPaddle gets a point, ball launches right
+      this.vx = random(3,5);
+      //launches at a random y velocity as it goes towards right
+      this.vy = random(-4,4);
+  }
+  if (this.x > width){
+    //When leftPaddle gets a point, ball launches left
+        this.vx = random(-5,-3);
+    //launches at a random y velocity as it goes towards left
+        this.vy = random(-4,4);
+  }
+  ///////// END NEW /////////
   this.x = width/2;
   this.y = height/2;
 }

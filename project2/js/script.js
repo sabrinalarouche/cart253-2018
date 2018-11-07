@@ -17,6 +17,8 @@ var ball2;
 var leftPaddle;
 var rightPaddle;
 ///////// NEW /////////
+//new object
+var bonus
 var state = "TITLE";
 var winner
 var bg;
@@ -24,6 +26,7 @@ var player1Sound;
 var player2Sound;
 var introSound;
 var endSound;
+var currentPlayerHit="";
 //background image
 function preload() {
  bg = loadImage("assets/images/bg.jpg")
@@ -38,13 +41,16 @@ function setup() {
   createCanvas(window.innerWidth-5,window.innerHeight-5);
   // Create a ball
   ball1 = ball = new Ball(width/2,height/2,5,5,30,10);
+  //enemy ball
   ball2 = ball = new Ball(width/3,height/3,5,5,30,10);
   // Create the right paddle with UP and DOWN as controls
   //changed sizes to adapt to full screen
-  rightPaddle = new Paddle(width-20,height/2,20,90,10,DOWN_ARROW,UP_ARROW);
+  rightPaddle = new Paddle(width-20,height/2,20,90,10,DOWN_ARROW,UP_ARROW,"player2");
   // Create the left paddle with W and S as controls
   // Keycodes 83 and 87 are W and S respectively
-  leftPaddle = new Paddle(0,height/2,20,90,10,83,87);
+  leftPaddle = new Paddle(0,height/2,20,90,10,83,87,"player1");
+//bonus object
+  bonus = new Bonus(random(width/2-100,width/2+100),random(height/2-100,height/2+100),5,5,200,10);
 }
   ///////// END NEW /////////
 // draw()
@@ -55,7 +61,8 @@ function draw() {
 ///////// NEW /////////
 //background is an image
   background(bg);
-
+//display bonus object
+bonus.display();
 //Establish the state of the game and what will be displayed
   switch (state) {
     case "TITLE":
@@ -145,6 +152,7 @@ function displayGame() {
 
   ball2.handleCollisionball2(leftPaddle);
   ball2.handleCollisionball2(rightPaddle);
+  bonus.handleCollision(ball1);
 
   ball1.display();
   ball2.displayball2();

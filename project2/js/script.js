@@ -19,32 +19,43 @@ var rightPaddle;
 ///////// NEW /////////
 var state = "TITLE";
 var winner
+var bg;
+var player1Sound;
+var player2Sound;
+var introSound;
+var endSound;
+//background image
+function preload() {
+ bg = loadImage("assets/images/bg.jpg")
+}
 ///////// END NEW /////////
 // setup()
 //
 // Creates the ball and paddles
 function setup() {
-  createCanvas(640,480);
-  // Create a ball
   ///////// NEW /////////
-  ball1 = ball = new Ball(width/2,height/2,5,5,10,5);
-  ball2 = ball = new Ball(width/3,height/3,5,5,10,5);
-  ///////// END NEW /////////
+  //Game takes up whole screen
+  createCanvas(window.innerWidth-5,window.innerHeight-5);
+  // Create a ball
+  ball1 = ball = new Ball(width/2,height/2,5,5,30,10);
+  ball2 = ball = new Ball(width/3,height/3,5,5,30,10);
   // Create the right paddle with UP and DOWN as controls
-  rightPaddle = new Paddle(width-10,height/2,10,60,10,DOWN_ARROW,UP_ARROW);
+  //changed sizes to adapt to full screen
+  rightPaddle = new Paddle(width-20,height/2,20,90,10,DOWN_ARROW,UP_ARROW);
   // Create the left paddle with W and S as controls
   // Keycodes 83 and 87 are W and S respectively
-  leftPaddle = new Paddle(0,height/2,10,60,10,83,87);
+  leftPaddle = new Paddle(0,height/2,20,90,10,83,87);
 }
-
+  ///////// END NEW /////////
 // draw()
 //
 // Handles input, updates all the elements, checks for collisions
 // and displays everything.
 function draw() {
-  background(0);
-
 ///////// NEW /////////
+//background is an image
+  background(bg);
+
 //Establish the state of the game and what will be displayed
   switch (state) {
     case "TITLE":
@@ -64,15 +75,15 @@ function draw() {
     // Set up all the styling elements
     push();
     textAlign(CENTER,CENTER);
-    textSize(32);
+    textSize(50);
     fill(255);
     stroke(255);
     // Display the text
-    text("EXTREME PONG!",width/2,height/2);
+    text("RETRO PONG!",width/2,height/2);
     // Font size goes down
-    textSize(16);
+    textSize(25);
     // Display the instructions
-    text("Press SPACE to play\nPlayer 1: WASD to move\n Player 2: ARROWS to move\n First player to 11 points wins!",width/2,3*height/4);
+    text("Press SPACE to play\nPlayer 1: WASD to move\n Player 2: ARROWS to move\n Avoid hitting the blue ball\n First player to 11 points wins!",width/2,3*height/4);
     pop();
 
     // Plays game if space is pressed
@@ -92,13 +103,15 @@ function displayGame() {
   leftPaddle.update();
   rightPaddle.update();
 
+///////// NEW /////////
   //Display number player score
     fill(255)
     text('Player 1: '+leftPaddle.score,30,30);
+    textSize(18);
     fill(255)
-    text('Player 2: '+rightPaddle.score,540,30);
+    text('Player 2: '+rightPaddle.score,windowWidth-120,30);
+    textSize(18);
 
-  ///////// NEW /////////
   var ballOffScreen = ball1.isOffScreen();
   //if the ball goes off the left, rightPaddle gets a point.
     if (ballOffScreen === 'l') {
@@ -150,7 +163,7 @@ function displayGame() {
 function displayGameOver() {
   push();
   textAlign(CENTER,CENTER);
-  textSize(32);
+  textSize(50);
   fill(255);
   stroke(255);
   //Text will display which player is the winner

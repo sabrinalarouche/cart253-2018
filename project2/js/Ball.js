@@ -94,6 +94,7 @@ Ball.prototype.handleCollision = function(paddle) {
   }
 }
   ///////// NEW /////////
+//Defines disadvantage for the paddle that hits the enemy ball
 Ball.prototype.handleCollisionball2 = function(paddle) {
   // Check if the ball overlaps the paddle on x axis
   if (this.x + this.size > paddle.x && this.x < paddle.x + paddle.w) {
@@ -102,7 +103,8 @@ Ball.prototype.handleCollisionball2 = function(paddle) {
       // If so, move ball back to previous position (by subtracting current velocity)
       this.x -= this.vx;
       this.y -= this.vy;
-      paddle.h = paddle.h-3;
+      //paddle gets smaller whenever it hits the enemy ball
+      paddle.h = paddle.h-5;
       // Reverse x velocity to bounce
       this.vx = -this.vx;
     }
@@ -117,15 +119,15 @@ Ball.prototype.reset = function () {
   //reset function to handle ball launching towards winner at random velocity
   if (this.x + this.size < 0){
     //When rightPaddle gets a point, ball launches right
-      this.vx = random(3,5);
+      this.vx = random(5,8);
       //launches at a random y velocity as it goes towards right
-      this.vy = random(-4,4);
+      this.vy = random(-6,6);
   }
   if (this.x > width){
     //When leftPaddle gets a point, ball launches left
-        this.vx = random(-5,-3);
+        this.vx = random(-8,-5);
     //launches at a random y velocity as it goes towards left
-        this.vy = random(-4,4);
+        this.vy = random(-6,6);
   }
   ///////// END NEW /////////
   this.x = width/2;

@@ -10,7 +10,10 @@
 // Written with JavaScript OOP.
 
 // Variable to contain the objects representing our ball and paddles
-var ball;
+///////// NEW /////////
+var ball1;
+var ball2;
+///////// END NEW /////////
 var leftPaddle;
 var rightPaddle;
 ///////// NEW /////////
@@ -23,7 +26,10 @@ var winner
 function setup() {
   createCanvas(640,480);
   // Create a ball
-  ball = new Ball(width/2,height/2,5,5,10,5);
+  ///////// NEW /////////
+  ball1 = ball = new Ball(width/2,height/2,5,5,10,5);
+  ball2 = ball = new Ball(width/3,height/3,5,5,10,5);
+  ///////// END NEW /////////
   // Create the right paddle with UP and DOWN as controls
   rightPaddle = new Paddle(width-10,height/2,10,60,10,DOWN_ARROW,UP_ARROW);
   // Create the left paddle with W and S as controls
@@ -79,8 +85,10 @@ function displayGame() {
 ///////// END NEW /////////
   leftPaddle.handleInput();
   rightPaddle.handleInput();
-
-  ball.update();
+///////// NEW /////////
+  ball1.update();
+  ball2.update();
+///////// END NEW /////////
   leftPaddle.update();
   rightPaddle.update();
 
@@ -91,11 +99,11 @@ function displayGame() {
     text('Player 2: '+rightPaddle.score,540,30);
 
   ///////// NEW /////////
-  var ballOffScreen = ball.isOffScreen();
+  var ballOffScreen = ball1.isOffScreen();
   //if the ball goes off the left, rightPaddle gets a point.
     if (ballOffScreen === 'l') {
       rightPaddle.score += 1;
-      ball.reset();
+      ball1.reset();
     //when player 1 has 11 points, it is the winner
     if (rightPaddle.score == 11){
       winner = "Player 1"
@@ -104,18 +112,30 @@ function displayGame() {
   //if the ball goes off the right, leftPaddle gets a point.
     if (ballOffScreen === 'r') {
       leftPaddle.score += 1;
-      ball.reset();
+      ball1.reset();
     //when player 2 has 11 points, it is the winner
     if (leftPaddle.score == 11){
       winner = "Player 2"
       }
     }
+
+    var enemyOffScreen = ball2.isOffScreen();
+    if (enemyOffScreen === 'l') {
+      ball2.reset();
+    }
+    if (enemyOffScreen === 'r') {
+      ball2.reset();
+    }
+
+  ball1.handleCollision(leftPaddle);
+  ball1.handleCollision(rightPaddle);
+
+  ball2.handleCollisionball2(leftPaddle);
+  ball2.handleCollisionball2(rightPaddle);
+
+  ball1.display();
+  ball2.displayball2();
   ///////// END NEW /////////
-
-  ball.handleCollision(leftPaddle);
-  ball.handleCollision(rightPaddle);
-
-  ball.display();
   leftPaddle.display();
   rightPaddle.display();
 ///////// NEW /////////

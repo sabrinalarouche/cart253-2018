@@ -70,7 +70,12 @@ Ball.prototype.display = function () {
   fill(255);
   rect(this.x,this.y,this.size,this.size);
 }
-
+///////// NEW /////////
+Ball.prototype.displayball2 = function () {
+  fill(0,0,255);
+  rect(this.x,this.y,this.size,this.size);
+}
+  ///////// END NEW /////////
 // handleCollision(paddle)
 //
 // Check if this ball overlaps the paddle passed as an argument
@@ -88,7 +93,22 @@ Ball.prototype.handleCollision = function(paddle) {
     }
   }
 }
-
+  ///////// NEW /////////
+Ball.prototype.handleCollisionball2 = function(paddle) {
+  // Check if the ball overlaps the paddle on x axis
+  if (this.x + this.size > paddle.x && this.x < paddle.x + paddle.w) {
+    // Check if the ball overlaps the paddle on y axis
+    if (this.y + this.size > paddle.y && this.y < paddle.y + paddle.h) {
+      // If so, move ball back to previous position (by subtracting current velocity)
+      this.x -= this.vx;
+      this.y -= this.vy;
+      paddle.h = paddle.h-3;
+      // Reverse x velocity to bounce
+      this.vx = -this.vx;
+    }
+  }
+}
+  ///////// END NEW /////////
 // reset()
 //
 // Set position back to the middle of the screen

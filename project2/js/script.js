@@ -1,5 +1,5 @@
-// Basic OO Pong
-// by Pippin Barr
+// Retro Pong
+// by Sabrina Larouche
 //
 // A primitive implementation of Pong with no scoring system
 // just the ability to play the game with the keyboard.
@@ -8,7 +8,14 @@
 // the left hand paddle.
 //
 // Written with JavaScript OOP.
-
+///////// NEW /////////
+//Credit:
+//Intro Music: Europe - The Final Countdown
+//End Music: Queen - We Are The Champions
+//Game Sound Effects: http://www.pacdv.com/sounds/interface_sounds-3.html
+//background: Google image
+//font: Google fonts
+///////// END NEW /////////
 // Variable to contain the objects representing our ball and paddles
 ///////// NEW /////////
 var ball1;

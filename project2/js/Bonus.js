@@ -16,7 +16,6 @@ function Bonus(x,y,vx,vy,size,speed) {
 Bonus.prototype.display = function () {
   fill(255);
   image(this.picture,this.x,this.y,this.size,this.size);
-  //rect(this.x,this.y,this.size,this.size);
 }
 Bonus.prototype.handleCollision = function(ball) {
   // Check if the ball overlaps the bonus object

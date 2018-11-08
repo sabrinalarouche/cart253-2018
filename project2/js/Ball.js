@@ -14,6 +14,8 @@ function Ball(x,y,vx,vy,size,speed) {
   this.vy = vy;
   this.size = size;
   this.speed = speed;
+  this.picture1 = ballImage;
+  this.picture2 = enemyImage;
 }
 
 // update()
@@ -68,12 +70,14 @@ Ball.prototype.isOffScreen = function () {
 // Draw the ball as a rectangle on the screen
 Ball.prototype.display = function () {
   fill(255);
-  rect(this.x,this.y,this.size,this.size);
+//image for ball
+  image(this.picture1,this.x,this.y,this.size,this.size);
 }
 ///////// NEW /////////
 Ball.prototype.displayball2 = function () {
   fill(0,0,255);
-  rect(this.x,this.y,this.size,this.size);
+//image for enemy ball
+  image(this.picture2,this.x,this.y,this.size,this.size);
 }
   ///////// END NEW /////////
 // handleCollision(paddle)

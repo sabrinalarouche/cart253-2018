@@ -26,6 +26,8 @@ var state = "TITLE";
 var winner;
 var bg;
 var bonusImage;
+var ballImage;
+var enemyImage;
 var player1Sound;
 var player2Sound;
 var introSound;
@@ -37,6 +39,8 @@ function preload() {
   //game images
   bg = loadImage("assets/images/bg.jpg");
   bonusImage = loadImage("assets/images/disco.png");
+  ballImage = loadImage("assets/images/ball.png");
+  enemyImage = loadImage("assets/images/enemy.png");
   //audio for the game
   introSound = new Audio("assets/sounds/intro.mp3");
   endSound = new Audio("assets/sounds/end.mp3");
@@ -51,9 +55,9 @@ function setup() {
   //Game takes up whole screen
   createCanvas(window.innerWidth-5,window.innerHeight-5);
   // Create a ball
-  ball1 = ball = new Ball(width/2,height/2,5,5,30,10);
+  ball1 = ball = new Ball(width/2,height/2,5,5,50,10);
   //enemy ball
-  ball2 = ball = new Ball(width/3,height/3,5,5,30,10);
+  ball2 = ball = new Ball(width/3,height/3,5,5,50,10);
   // Create the right paddle with UP and DOWN as controls
   //changed sizes to adapt to full screen
   rightPaddle = new Paddle(width-20,height/2,20,90,10,DOWN_ARROW,UP_ARROW,"player2");

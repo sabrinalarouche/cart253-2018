@@ -18,20 +18,23 @@ var leftPaddle;
 var rightPaddle;
 ///////// NEW /////////
 //new object
-var bonus
+var bonus;
 var state = "TITLE";
-var winner
+var winner;
 var bg;
+var bonusImage;
 var player1Sound;
 var player2Sound;
 var introSound;
 var endSound;
-var beepSFX
+var beepSFX;
 var currentPlayerHit="";
-//background image
+
 function preload() {
- bg = loadImage("assets/images/bg.jpg")
- //audio for the game
+//game images
+ bg = loadImage("assets/images/bg.jpg");
+ bonusImage = loadImage("assets/images/disco.png");
+//audio for the game
  introSound = new Audio("assets/sounds/intro.mp3");
  endSound = new Audio("assets/sounds/end.mp3");
  beepSFX = new Audio("assets/sounds/beep.wav");
@@ -55,7 +58,7 @@ function setup() {
   // Keycodes 83 and 87 are W and S respectively
   leftPaddle = new Paddle(0,height/2,20,90,10,83,87,"player1");
 //bonus object
-  bonus = new Bonus(random(width/2-100,width/2+100),random(height/2-100,height/2+100),5,5,200,10);
+  bonus = new Bonus(random(width/2-100,width/2+100),random(height/2-100,height/2+100),5,5,150,10);
 }
   ///////// END NEW /////////
 // draw()

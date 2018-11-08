@@ -6,11 +6,13 @@ function Bonus(x,y,vx,vy,size,speed) {
   this.vy = vy;
   this.size = size;
   this.speed = speed;
+  this.picture = bonusImage;
 }
 // Draw the ball as a rectangle on the screen
 Bonus.prototype.display = function () {
   fill(255);
-  rect(this.x,this.y,this.size,this.size);
+  image(this.picture,this.x,this.y,this.size,this.size);
+  //rect(this.x,this.y,this.size,this.size);
 }
 Bonus.prototype.handleCollision = function(ball) {
   // Check if the ball overlaps the bonus object

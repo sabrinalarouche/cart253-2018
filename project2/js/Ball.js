@@ -5,7 +5,6 @@
 // and bouncing off paddles.
 
 // Ball constructor
-//
 // Sets the properties with the provided arguments
 function Ball(x,y,vx,vy,size,speed) {
   this.x = x;
@@ -45,23 +44,23 @@ Ball.prototype.isOffScreen = function () {
   // Check for going off screen and reset if so
   ///////// NEW /////////
   //check if ball goes off right side
-    if (this.x > width) {
-  //left paddle will turn green when it gets a point and right paddle red
-      leftPaddle.colourPaddle = color(0,255,0);
-      rightPaddle.colourPaddle = color(255,0,0);
-      return 'r';
-    }
+  if (this.x > width) {
+    //left paddle will turn green when it gets a point and right paddle red
+    leftPaddle.colourPaddle = color(0,255,0);
+    rightPaddle.colourPaddle = color(255,0,0);
+    return 'r';
+  }
   //check if ball goes off left side
-    if (this.x + this.size < 0) {
-  //right paddle will turn green when it gets a point and left paddle red
-      rightPaddle.colourPaddle = color(0,255,0);
-      leftPaddle.colourPaddle = color(255,0,0);
-      return 'l';
-    }
-    else {
+  if (this.x + this.size < 0) {
+    //right paddle will turn green when it gets a point and left paddle red
+    rightPaddle.colourPaddle = color(0,255,0);
+    leftPaddle.colourPaddle = color(255,0,0);
+    return 'l';
+  }
+  else {
     //when the ball is neither off the left or right side
-      return 'n';
-    }
+    return 'n';
+  }
   ///////// END NEW /////////
 }
 
@@ -69,17 +68,15 @@ Ball.prototype.isOffScreen = function () {
 //
 // Draw the ball as a rectangle on the screen
 Ball.prototype.display = function () {
-  fill(255);
-//image for ball
+  //ball is an image of a triangle
   image(this.picture1,this.x,this.y,this.size,this.size);
 }
 ///////// NEW /////////
 Ball.prototype.displayball2 = function () {
-  fill(0,0,255);
-//image for enemy ball
+  //enemy ball is an image of a spike
   image(this.picture2,this.x,this.y,this.size,this.size);
 }
-  ///////// END NEW /////////
+///////// END NEW /////////
 // handleCollision(paddle)
 //
 // Check if this ball overlaps the paddle passed as an argument
@@ -95,14 +92,14 @@ Ball.prototype.handleCollision = function(paddle) {
       // Reverse x velocity to bounce
       this.vx = -this.vx;
       currentPlayerHit = paddle.name;
-///////// NEW /////////
+      ///////// NEW /////////
       //beep whenever there is a collision between ball and paddle
       beepSFX.play();
-///////// END NEW /////////
+      ///////// END NEW /////////
     }
   }
 }
-  ///////// NEW /////////
+///////// NEW /////////
 //Defines disadvantage for the paddle that hits the enemy ball
 Ball.prototype.handleCollisionball2 = function(paddle) {
   // Check if the ball overlaps the paddle on x axis
@@ -121,7 +118,7 @@ Ball.prototype.handleCollisionball2 = function(paddle) {
     }
   }
 }
-  ///////// END NEW /////////
+///////// END NEW /////////
 // reset()
 //
 // Set position back to the middle of the screen
@@ -130,15 +127,15 @@ Ball.prototype.reset = function () {
   //reset function to handle ball launching towards winner at random velocity
   if (this.x + this.size < 0){
     //When rightPaddle gets a point, ball launches right
-      this.vx = random(5,8);
-      //launches at a random y velocity as it goes towards right
-      this.vy = random(-6,6);
+    this.vx = random(5,8);
+    //launches at a random y velocity as it goes towards right
+    this.vy = random(-6,6);
   }
   if (this.x > width){
     //When leftPaddle gets a point, ball launches left
-        this.vx = random(-8,-5);
+    this.vx = random(-8,-5);
     //launches at a random y velocity as it goes towards left
-        this.vy = random(-6,6);
+    this.vy = random(-6,6);
   }
   ///////// END NEW /////////
   this.x = width/2;

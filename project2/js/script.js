@@ -19,8 +19,6 @@
 // Variable to contain the objects representing our ball and paddles
 ///////// NEW /////////
 var ball1;
-//enemy ball
-var ball2;
 //variable for array of bonus objects at end of game
 var bonuses =[];
 //variable for array of enemy balls
@@ -63,12 +61,10 @@ function preload() {
 // Creates the ball and paddles
 function setup() {
   ///////// NEW /////////
-  //Game takes up whole screen
+  //Game is full screen
   createCanvas(window.innerWidth-5,window.innerHeight-5);
   // Create a ball
   ball1 = ball = new Ball(width/2,height/2,5,5,50,10);
-  //enemy ball
-  ball2 = ball = new Ball(width/3,height/3,5,5,50,10);
   // Create the right paddle with UP and DOWN as controls
   //changed sizes to adapt to full screen
   rightPaddle = new Paddle(width-20,height/2,20,90,10,DOWN_ARROW,UP_ARROW,"player2");
@@ -127,7 +123,7 @@ function draw() {
     textSize(25);
     fill(255);
     // Display the instructions
-    text("Press SPACE to play\nPlayer 1: WASD to move\n Player 2: ARROWS to move\n Avoid hitting the blue spike so you don't shrink.\n Bounce the pink triangle off your paddle to collide with the disco ball to grow.\nFirst player to 11 points wins!",width/2,3*height/4);
+    text("Press SPACE to play\nPlayer 1: WASD to move\n Player 2: ARROWS to move\n Avoid hitting the blue spikes so your paddle doesn't shrink.\n Bounce the pink triangle off your paddle to collide with the disco ball so your paddle grows.\nFirst player to 11 points wins!",width/2,3*height/4);
     pop();
     //play intro music
     introSound.play();
@@ -144,20 +140,19 @@ function draw() {
     rightPaddle.handleInput();
     ///////// NEW /////////
     ball1.update();
-    ball2.update();
     ///////// END NEW /////////
     leftPaddle.update();
     rightPaddle.update();
 
     ///////// NEW /////////
     //Display number player score
-    fill(255)
+    fill(255);
     text('Player 1: '+leftPaddle.score,30,30);
-    textSize(18);
+    textSize(25);
     textFont("VT323");
-    fill(255)
-    text('Player 2: '+rightPaddle.score,windowWidth-120,30);
-    textSize(18);
+    fill(255);
+    text('Player 2: '+rightPaddle.score,windowWidth-150,30);
+    textSize(25);
     textFont("VT323");
 
     var ballOffScreen = ball1.isOffScreen();
@@ -167,7 +162,7 @@ function draw() {
       ball1.reset();
       //when player 1 has 11 points, it is the winner
       if (rightPaddle.score == 11){
-        winner = "Player 1"
+        winner = "Player 1";
       }
     }
     //if the ball goes off the right, leftPaddle gets a point.
@@ -176,34 +171,23 @@ function draw() {
       ball1.reset();
       //when player 2 has 11 points, it is the winner
       if (leftPaddle.score == 11){
-        winner = "Player 2"
+        winner = "Player 2";
       }
-    }
-
-    var enemyOffScreen = ball2.isOffScreen();
-    if (enemyOffScreen === 'l') {
-      ball2.reset();
-    }
-    if (enemyOffScreen === 'r') {
-      ball2.reset();
     }
 
     ball1.handleCollision(leftPaddle);
     ball1.handleCollision(rightPaddle);
 
-    ball2.handleCollisionball2(leftPaddle);
-    ball2.handleCollisionball2(rightPaddle);
     bonus.handleCollision(ball1);
 
     ball1.display();
-    ball2.displayball2();
     ///////// END NEW /////////
     leftPaddle.display();
     rightPaddle.display();
     ///////// NEW /////////
     //if either player 1 or player 2 has 11 points,
     //the state of the game will be 'GAME OVER'
-    if (leftPaddle.score === 3 || rightPaddle.score === 3){
+    if (leftPaddle.score === 11 || rightPaddle.score === 11){
       state = "GAME OVER";
     }
     //pause audio
@@ -211,19 +195,19 @@ function draw() {
     endSound.pause();
     //loop that displays the array of enemy balls
     for (var i = 0; i < 3; i++){
-        enemies[i].update();
-        enemies[i].displayball2();
-        enemies[i].handleCollisionball2(leftPaddle);
-        enemies[i].handleCollisionball2(rightPaddle);
-        enemies[i].displayball2();
+      enemies[i].update();
+      enemies[i].displayball2();
+      enemies[i].handleCollisionball2(leftPaddle);
+      enemies[i].handleCollisionball2(rightPaddle);
+      enemies[i].displayball2();
 
-    var enemyOffScreen = enemies[i].isOffScreen();
+      var enemyOffScreen = enemies[i].isOffScreen();
       if (enemyOffScreen === 'l') {
-          enemies[i].reset();
-        }
+        enemies[i].reset();
+      }
       if (enemyOffScreen === 'r') {
-          enemies[i].reset();
-        }
+        enemies[i].reset();
+      }
     }
 
   }
@@ -233,7 +217,7 @@ function draw() {
 }
 //When the state is 'GAME OVER', it will display the following
 function displayGameOver() {
-//Display array of bonus object
+  //Display array of bonus object
   for (var i = 0; i < bonuses.length; i++) {
     bonuses[i].display();
     bonuses[i].update();

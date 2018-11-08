@@ -42,9 +42,9 @@ Bonus.prototype.handleCollision = function(ball) {
   }
 }
 //Adding movement to the array of objects at the end
-  //the objects will move left to right, reversing direction when they hit the border (random amount from 20-100)
+//the objects will move left to right, reversing direction when they hit the border (random amount from 20-100)
 Bonus.prototype.update = function(){
-    this.x += this.vx;
+  this.x += this.vx;
   if (this.x> this.border+this.originx ){
     this.vx = -this.vx;
   }

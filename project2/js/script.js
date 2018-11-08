@@ -64,7 +64,7 @@ function setup() {
   bonus = new Bonus(random(width/2-100,width/2+100),random(height/2-100,height/2+100),5,5,150,10);
   //array of bonus objects that will appear at random places and sizes at the end of game
   for (var i = 0; i < 50; i++){
-    bonuses.push (new Bonus(random(0,width),random(0,height),2,2,random(30,150),2));
+    bonuses.push (new Bonus(random(0,width),random(0,height),1,2,random(30,150),2));
   }
 }
 ///////// END NEW /////////
@@ -197,6 +197,7 @@ function displayGameOver() {
 //Display array of bonus object
   for (var i = 0; i < bonuses.length; i++) {
     bonuses[i].display();
+    bonuses[i].update();
   }
   push();
   textAlign(CENTER,CENTER);

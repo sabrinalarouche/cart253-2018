@@ -112,7 +112,7 @@ function draw() {
     textSize(25);
     fill(255);
     // Display the instructions
-    text("Press SPACE to play\nPlayer 1: WASD to move\n Player 2: ARROWS to move\n Avoid hitting the blue ball\n First player to 11 points wins!",width/2,3*height/4);
+    text("Press SPACE to play\nPlayer 1: WASD to move\n Player 2: ARROWS to move\n Avoid hitting the blue spike so you don't shrink.\n Bounce the pink triangle off your paddle to collide with the disco ball to grow.\nFirst player to 11 points wins!",width/2,3*height/4);
     pop();
     //play intro music
     introSound.play();

@@ -12,9 +12,10 @@
 // Variable to contain the objects representing our ball and paddles
 ///////// NEW /////////
 var ball1;
+//enemy ball
 var ball2;
+//variable for array of bonus objects at end of game
 var bonuses =[];
-
 ///////// END NEW /////////
 var leftPaddle;
 var rightPaddle;
@@ -61,7 +62,7 @@ function setup() {
   leftPaddle = new Paddle(0,height/2,20,90,10,83,87,"player1");
   //bonus object
   bonus = new Bonus(random(width/2-100,width/2+100),random(height/2-100,height/2+100),5,5,150,10);
-
+  //array of bonus objects that will appear at random places and sizes at the end of game
   for (var i = 0; i < 50; i++){
     bonuses.push (new Bonus(random(0,width),random(0,height),2,2,random(30,150),2));
   }
@@ -84,7 +85,7 @@ function draw() {
 
     case "GAME":
     displayGame();
-    //display bonus object
+    //display bonus object during the game only
     bonus.display();
     break;
 
@@ -97,14 +98,15 @@ function draw() {
     // Set up all the styling elements
     push();
     textAlign(CENTER,CENTER);
-    textSize(80);
-    fill(255);
+    textSize(150);
+    fill(64,224,208);
     textFont("VT323");
     stroke(255);
     // Display the text
     text("RETRO PONG!",width/2,height/2);
     // Font size goes down
     textSize(25);
+    fill(255);
     // Display the instructions
     text("Press SPACE to play\nPlayer 1: WASD to move\n Player 2: ARROWS to move\n Avoid hitting the blue ball\n First player to 11 points wins!",width/2,3*height/4);
     pop();
@@ -192,14 +194,14 @@ function draw() {
 }
 //When the state is 'GAME OVER', it will display the following
 function displayGameOver() {
-
+//Display array of bonus object
   for (var i = 0; i < bonuses.length; i++) {
     bonuses[i].display();
   }
   push();
   textAlign(CENTER,CENTER);
-  textSize(50);
-  fill(255);
+  textSize(100);
+  fill(64,224,208);
   stroke(255);
   textFont("VT323");
   //Text will display which player is the winner

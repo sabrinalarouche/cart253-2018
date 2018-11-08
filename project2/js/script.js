@@ -13,6 +13,8 @@
 ///////// NEW /////////
 var ball1;
 var ball2;
+var bonuses =[];
+
 ///////// END NEW /////////
 var leftPaddle;
 var rightPaddle;
@@ -31,13 +33,13 @@ var beepSFX;
 var currentPlayerHit="";
 
 function preload() {
-//game images
- bg = loadImage("assets/images/bg.jpg");
- bonusImage = loadImage("assets/images/disco.png");
-//audio for the game
- introSound = new Audio("assets/sounds/intro.mp3");
- endSound = new Audio("assets/sounds/end.mp3");
- beepSFX = new Audio("assets/sounds/beep.wav");
+  //game images
+  bg = loadImage("assets/images/bg.jpg");
+  bonusImage = loadImage("assets/images/disco.png");
+  //audio for the game
+  introSound = new Audio("assets/sounds/intro.mp3");
+  endSound = new Audio("assets/sounds/end.mp3");
+  beepSFX = new Audio("assets/sounds/beep.wav");
 }
 ///////// END NEW /////////
 // setup()
@@ -57,21 +59,24 @@ function setup() {
   // Create the left paddle with W and S as controls
   // Keycodes 83 and 87 are W and S respectively
   leftPaddle = new Paddle(0,height/2,20,90,10,83,87,"player1");
-//bonus object
+  //bonus object
   bonus = new Bonus(random(width/2-100,width/2+100),random(height/2-100,height/2+100),5,5,150,10);
+
+  for (var i = 0; i < 50; i++){
+    bonuses.push (new Bonus(random(0,width),random(0,height),2,2,random(30,150),2));
+  }
 }
-  ///////// END NEW /////////
+///////// END NEW /////////
 // draw()
 //
 // Handles input, updates all the elements, checks for collisions
 // and displays everything.
 function draw() {
-///////// NEW /////////
-//background is an image
+  ///////// NEW /////////
+  //background is an image
   background(bg);
-//display bonus object
-bonus.display();
-//Establish the state of the game and what will be displayed
+
+  //Establish the state of the game and what will be displayed
   switch (state) {
     case "TITLE":
     displayTitle();
@@ -79,6 +84,8 @@ bonus.display();
 
     case "GAME":
     displayGame();
+    //display bonus object
+    bonus.display();
     break;
 
     case "GAME OVER":
@@ -109,20 +116,20 @@ bonus.display();
       state = "GAME";
     }
   }
-//When the state is 'Game', it will display the following
-function displayGame() {
-///////// END NEW /////////
-  leftPaddle.handleInput();
-  rightPaddle.handleInput();
-///////// NEW /////////
-  ball1.update();
-  ball2.update();
-///////// END NEW /////////
-  leftPaddle.update();
-  rightPaddle.update();
+  //When the state is 'Game', it will display the following
+  function displayGame() {
+    ///////// END NEW /////////
+    leftPaddle.handleInput();
+    rightPaddle.handleInput();
+    ///////// NEW /////////
+    ball1.update();
+    ball2.update();
+    ///////// END NEW /////////
+    leftPaddle.update();
+    rightPaddle.update();
 
-///////// NEW /////////
-  //Display number player score
+    ///////// NEW /////////
+    //Display number player score
     fill(255)
     text('Player 1: '+leftPaddle.score,30,30);
     textSize(18);
@@ -132,23 +139,23 @@ function displayGame() {
     textSize(18);
     textFont("VT323");
 
-  var ballOffScreen = ball1.isOffScreen();
-  //if the ball goes off the left, rightPaddle gets a point.
+    var ballOffScreen = ball1.isOffScreen();
+    //if the ball goes off the left, rightPaddle gets a point.
     if (ballOffScreen === 'l') {
       rightPaddle.score += 1;
       ball1.reset();
-    //when player 1 has 11 points, it is the winner
-    if (rightPaddle.score == 11){
-      winner = "Player 1"
+      //when player 1 has 11 points, it is the winner
+      if (rightPaddle.score == 11){
+        winner = "Player 1"
+      }
     }
-    }
-  //if the ball goes off the right, leftPaddle gets a point.
+    //if the ball goes off the right, leftPaddle gets a point.
     if (ballOffScreen === 'r') {
       leftPaddle.score += 1;
       ball1.reset();
-    //when player 2 has 11 points, it is the winner
-    if (leftPaddle.score == 11){
-      winner = "Player 2"
+      //when player 2 has 11 points, it is the winner
+      if (leftPaddle.score == 11){
+        winner = "Player 2"
       }
     }
 
@@ -160,31 +167,35 @@ function displayGame() {
       ball2.reset();
     }
 
-  ball1.handleCollision(leftPaddle);
-  ball1.handleCollision(rightPaddle);
+    ball1.handleCollision(leftPaddle);
+    ball1.handleCollision(rightPaddle);
 
-  ball2.handleCollisionball2(leftPaddle);
-  ball2.handleCollisionball2(rightPaddle);
-  bonus.handleCollision(ball1);
+    ball2.handleCollisionball2(leftPaddle);
+    ball2.handleCollisionball2(rightPaddle);
+    bonus.handleCollision(ball1);
 
-  ball1.display();
-  ball2.displayball2();
-  ///////// END NEW /////////
-  leftPaddle.display();
-  rightPaddle.display();
-///////// NEW /////////
-//if either player 1 or player 2 has 11 points,
-//the state of the game will be 'GAME OVER'
-  if (leftPaddle.score === 11 || rightPaddle.score === 11){
-    state = "GAME OVER";
+    ball1.display();
+    ball2.displayball2();
+    ///////// END NEW /////////
+    leftPaddle.display();
+    rightPaddle.display();
+    ///////// NEW /////////
+    //if either player 1 or player 2 has 11 points,
+    //the state of the game will be 'GAME OVER'
+    if (leftPaddle.score === 3 || rightPaddle.score === 3){
+      state = "GAME OVER";
+    }
+    //pause audio
+    introSound.pause();
+    endSound.pause();
   }
-  //pause audio
-  introSound.pause();
-  endSound.pause();
-}
 }
 //When the state is 'GAME OVER', it will display the following
 function displayGameOver() {
+
+  for (var i = 0; i < bonuses.length; i++) {
+    bonuses[i].display();
+  }
   push();
   textAlign(CENTER,CENTER);
   textSize(50);
@@ -197,5 +208,6 @@ function displayGameOver() {
   //start audio
   endSound.play();
   playOnce = true;
+
 }
 ///////// END NEW /////////

@@ -116,6 +116,8 @@ Ball.prototype.handleCollisionball2 = function(paddle) {
       paddle.h = paddle.h-5;
       // Reverse x velocity to bounce
       this.vx = -this.vx;
+      //beep whenever there is a collision between enemy ball and paddle
+      enemySound.play();
     }
   }
 }

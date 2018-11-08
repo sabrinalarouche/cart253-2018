@@ -30,8 +30,8 @@ var bg;
 var bonusImage;
 var ballImage;
 var enemyImage;
-var player1Sound;
-var player2Sound;
+var enemySound;
+var bonusSound;
 var introSound;
 var endSound;
 var beepSFX;
@@ -47,6 +47,8 @@ function preload() {
   introSound = new Audio("assets/sounds/intro.mp3");
   endSound = new Audio("assets/sounds/end.mp3");
   beepSFX = new Audio("assets/sounds/beep.wav");
+  enemySound = new Audio("assets/sounds/enemy.wav");
+  bonusSound = new Audio("assets/sounds/bonus.wav");
 }
 ///////// END NEW /////////
 // setup()

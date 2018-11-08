@@ -24,6 +24,8 @@ Bonus.prototype.handleCollision = function(ball) {
     if (ball.y + ball.size > this.y && ball.y < this.y + this.size) {
       this.x = random(width/2-200,width/2+200);
       this.y = random(height/2-200,height/2+200);
+      //sound whenever there is a collision between ball and bonus
+      bonusSound.play();
       //if player 2 is the last one to hit the ball before it overlaps the bonus
       if(currentPlayerHit ==="player2"){
         //the paddle will increase by 5

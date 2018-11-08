@@ -26,10 +26,15 @@ var player1Sound;
 var player2Sound;
 var introSound;
 var endSound;
+var beepSFX
 var currentPlayerHit="";
 //background image
 function preload() {
  bg = loadImage("assets/images/bg.jpg")
+ //audio for the game
+ introSound = new Audio("assets/sounds/intro.mp3");
+ endSound = new Audio("assets/sounds/end.mp3");
+ beepSFX = new Audio("assets/sounds/beep.wav");
 }
 ///////// END NEW /////////
 // setup()
@@ -92,7 +97,9 @@ bonus.display();
     // Display the instructions
     text("Press SPACE to play\nPlayer 1: WASD to move\n Player 2: ARROWS to move\n Avoid hitting the blue ball\n First player to 11 points wins!",width/2,3*height/4);
     pop();
-
+    //play intro music
+    introSound.play();
+    introSound.loop = true;
     // Plays game if space is pressed
     if (keyIsPressed && key === ' ') {
       state = "GAME";
@@ -165,6 +172,9 @@ function displayGame() {
   if (leftPaddle.score === 11 || rightPaddle.score === 11){
     state = "GAME OVER";
   }
+  //pause audio
+  introSound.pause();
+  endSound.pause();
 }
 }
 //When the state is 'GAME OVER', it will display the following
@@ -177,5 +187,8 @@ function displayGameOver() {
   //Text will display which player is the winner
   text(winner+' is the winner!',width/2,height/2);
   pop();
+  //start audio
+  endSound.play();
+  playOnce = true;
 }
 ///////// END NEW /////////

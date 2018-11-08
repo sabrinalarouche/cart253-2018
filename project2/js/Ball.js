@@ -91,7 +91,10 @@ Ball.prototype.handleCollision = function(paddle) {
       // Reverse x velocity to bounce
       this.vx = -this.vx;
       currentPlayerHit = paddle.name;
-      console.log("playerHit"+currentPlayerHit);
+///////// NEW /////////
+      //beep whenever there is a collision between ball and paddle
+      beepSFX.play();
+///////// END NEW /////////
     }
   }
 }

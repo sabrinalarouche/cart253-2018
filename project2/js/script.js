@@ -16,6 +16,8 @@ var ball1;
 var ball2;
 //variable for array of bonus objects at end of game
 var bonuses =[];
+//variable for array of enemy balls
+var enemies =[];
 ///////// END NEW /////////
 var leftPaddle;
 var rightPaddle;
@@ -69,6 +71,10 @@ function setup() {
   //array of bonus objects that will appear at random places and sizes at the end of game
   for (var i = 0; i < 50; i++){
     bonuses.push (new Bonus(random(0,width),random(0,height),1,2,random(30,150),2));
+  }
+  //array of enemy balls
+  for (var i = 0; i < 3; i++){
+    enemies.push (new Ball(random(width/2-100,width/2+100),random(height/2-100,height/2+100),5,5,50,5));
   }
 }
 ///////// END NEW /////////
@@ -194,7 +200,27 @@ function draw() {
     //pause audio
     introSound.pause();
     endSound.pause();
+    //loop that displays the array of enemy balls
+    for (var i = 0; i < 3; i++){
+        enemies[i].update();
+        enemies[i].displayball2();
+        enemies[i].handleCollisionball2(leftPaddle);
+        enemies[i].handleCollisionball2(rightPaddle);
+        enemies[i].displayball2();
+
+    var enemyOffScreen = enemies[i].isOffScreen();
+      if (enemyOffScreen === 'l') {
+          enemies[i].reset();
+        }
+      if (enemyOffScreen === 'r') {
+          enemies[i].reset();
+        }
+    }
+
   }
+
+
+
 }
 //When the state is 'GAME OVER', it will display the following
 function displayGameOver() {

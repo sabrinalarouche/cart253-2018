@@ -90,8 +90,9 @@ bonus.display();
     // Set up all the styling elements
     push();
     textAlign(CENTER,CENTER);
-    textSize(50);
+    textSize(80);
     fill(255);
+    textFont("VT323");
     stroke(255);
     // Display the text
     text("RETRO PONG!",width/2,height/2);
@@ -125,9 +126,11 @@ function displayGame() {
     fill(255)
     text('Player 1: '+leftPaddle.score,30,30);
     textSize(18);
+    textFont("VT323");
     fill(255)
     text('Player 2: '+rightPaddle.score,windowWidth-120,30);
     textSize(18);
+    textFont("VT323");
 
   var ballOffScreen = ball1.isOffScreen();
   //if the ball goes off the left, rightPaddle gets a point.
@@ -187,6 +190,7 @@ function displayGameOver() {
   textSize(50);
   fill(255);
   stroke(255);
+  textFont("VT323");
   //Text will display which player is the winner
   text(winner+' is the winner!',width/2,height/2);
   pop();

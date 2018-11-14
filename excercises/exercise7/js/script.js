@@ -3,7 +3,7 @@
 Excercise 7
 Sabrina Larouche
 
-For this Excercise I wanted to explore arrays and interacting with them.
+For this excercise I wanted to explore arrays and making them interactive. I didnt want to make anything too complicated but something I can potentially add onto for my final project. 
 
 ******************/
 
@@ -27,22 +27,19 @@ function setup() {
 
 // draw()
 //
-// Description of draw()
-
+// Displays black background with array of white balls at random locations
 function draw() {
   createCanvas(window.innerWidth,window.innerHeight);
   background(0);
   for (var i = 0; i < 100; i++) {
-
       balls[i].update();
-        balls[i].separate(balls);
+      balls[i].separate(balls);
       balls[i].display();
     }
 }
-//Balls change to the same random colour on click of the mouse
+// Balls change to the same random colour on click of the mouse
 function mousePressed(){
-  let c =color(random(255),random(255),random(255));
+  let c = color(random(255),random(255),random(255));
   for (var i = 0; i < 100; i++) {
-
       balls[i].color = c;
     }

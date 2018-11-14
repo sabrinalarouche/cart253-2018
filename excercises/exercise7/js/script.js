@@ -39,3 +39,10 @@ function draw() {
       balls[i].display();
     }
 }
+//Balls change to the same random colour on click of the mouse
+function mousePressed(){
+  let c =color(random(255),random(255),random(255));
+  for (var i = 0; i < 100; i++) {
+
+      balls[i].color = c;
+    }

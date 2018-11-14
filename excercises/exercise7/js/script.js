@@ -3,7 +3,7 @@
 Excercise 7
 Sabrina Larouche
 
-For this excercise I wanted to explore arrays and making them interactive. I didnt want to make anything too complicated but something I can potentially add onto for my final project. 
+For this excercise I wanted to explore arrays and making them interactive. I didnt want to make anything too complicated but something I can potentially add onto for my final project.
 
 ******************/
 
@@ -43,3 +43,4 @@ function mousePressed(){
   for (var i = 0; i < 100; i++) {
       balls[i].color = c;
     }
+}

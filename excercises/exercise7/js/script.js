@@ -33,7 +33,9 @@ function draw() {
   createCanvas(window.innerWidth,window.innerHeight);
   background(0);
   for (var i = 0; i < 100; i++) {
+
       balls[i].update();
+        balls[i].separate(balls);
       balls[i].display();
     }
 }

@@ -7,6 +7,7 @@ For this exercise I wanted to explore arrays and making them interactive. I didn
 The array follows the movement of the mouse and changes colour when you left click the mouse.
 I also explored the Boid algorithm to keep the balls seperate from each other to not overlap.
 Also, explored p5.sound and changing the rate of audio based on mouse movement.
+The faster you move the mouse the higher the rate, no audio if you don't move the mouse.
 ******************/
 
 //Variables for exercise

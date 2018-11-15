@@ -1,10 +1,11 @@
 /*****************
 
-Excercise 7
+Exercise 7
 Sabrina Larouche
 
-For this excercise I wanted to explore arrays and making them interactive. I didnt want to make anything too complicated but something I can potentially add onto for my final project.
+For this exercise I wanted to explore arrays and making them interactive. I didnt want to make anything too complicated but something I can potentially add onto for my final project.
 The array follows the movement of the mouse and changes colour when you left click the mouse.
+I also explored the Boid algorithm to keep the balls seperate from each other to not overlap.
 ******************/
 
 var balls = [];

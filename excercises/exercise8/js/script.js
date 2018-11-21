@@ -30,14 +30,26 @@ function setup() {
 //
 // Description of draw()
 function draw(){
-  translate(-width/2,-height/2);
+translate(-width/2,-height/2);
 background(0);
 for (var i = 0; i < 10; i++) {
-  if(boxes[i].move ===true){
+  if(boxes[i].move === true){
     boxes[i].angle += 0.01;
   }
-     boxes[i].update();
-    // boxes[i].separate(boxes);
+      boxes[i].update();
       boxes[i].display();
     }
  }
+
+ function keyPressed(){
+   if(key ==="d"){
+     for (var i = 0; i < 10; i++) {
+     boxes[i].move = true;
+      }
+   }
+ }
+ function keyReleased() {
+        for (var i = 0; i < 10; i++) {
+        boxes[i].move =false;
+      }
+    }

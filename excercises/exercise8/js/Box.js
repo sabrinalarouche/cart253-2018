@@ -7,10 +7,13 @@ function Box(x,y,vx,vy,size,speed) {
   this.speed = speed;
   this.angle = 0;
   this.scaleFactor = 1;
+  this.move =false;
   }
 Box.prototype.display = function () {
   push();
   translate(this.x,this.y);
+  //rotateX(radians(45));
+  rotateY(this.angle);
   scale(this.scaleFactor);
   box(this.size);
   pop();

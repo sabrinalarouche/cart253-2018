@@ -6,13 +6,17 @@ function Box(x,y,vx,vy,size,speed) {
   this.size = size;
   this.speed = speed;
   this.angle = 0;
+  this.rotate = 0;
   this.scaleFactor = 1;
-  this.move =false;
+  this.moveRight =false;
+  this.moveLeft =false;
+  this.moveUp =false;
+  this.moveDown =false;
   }
 Box.prototype.display = function () {
   push();
   translate(this.x,this.y);
-  //rotateX(radians(45));
+  rotateX(this.rotate);
   rotateY(this.angle);
   scale(this.scaleFactor);
   box(this.size);
@@ -30,7 +34,7 @@ Box.prototype.update = function () {
 }
 
 Box.prototype.separate = function(boxes) {
-//How much the balls should be separated
+//How much the boxes should be separated
   var desiredseparation = 50.0;
   var count = 0;
   // For every boid in the system, check if it's too close

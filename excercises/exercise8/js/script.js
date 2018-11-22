@@ -10,7 +10,8 @@ author, and this description to match your project!
 var boxes = [];
 var locX;
 var locY;
-
+var vid;
+var theta = 0;
 // preload()
 //
 // Description of preload
@@ -27,6 +28,10 @@ function setup() {
   createCanvas(windowWidth,windowHeight,WEBGL);
   locX = mouseX - height / 2;
   locY = mouseY - width / 2;
+  vid = createVideo(["assets/videos/fireworks.mp4"]);
+  vid.elt.muted = true;
+  vid.loop();
+  vid.hide();
 }
 
 // draw()
@@ -37,6 +42,17 @@ function draw(){
   pointLight(255, 255, 255, locX, locY, 100);
   translate(-width/2,-height/2);
   background(0);
+
+  push();
+  translate(width/2,height/2);
+    rotateZ(theta * mouseX * 0.001);
+    rotateX(theta * mouseX * 0.001);
+    rotateY(theta * mouseX * 0.001);
+    //pass image as texture
+    texture(vid);
+    sphere(150);
+    theta += 0.05;
+  pop();
   //boxes move right
   for (var i = 0; i < 10; i++) {
     if(boxes[i].moveRight === true){

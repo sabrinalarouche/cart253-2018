@@ -35,6 +35,7 @@ function setup() {
   vid.elt.muted = true;
   vid.loop();
   vid.hide();
+  pic = loadImage("assets/images/colour.jpeg")
 }
 
 // draw()
@@ -54,6 +55,17 @@ function draw(){
     rotateX(theta * mouseX * 0.001);
     rotateY(theta * mouseX * 0.001);
     texture(vid);
+    sphere(150);
+  //constant slow rotation
+    theta += 0.05;
+  pop();
+  push();
+  translate(width/3,height/3);
+  //moves according to the mouse
+    rotateZ(theta * mouseX * 0.001);
+    rotateX(theta * mouseX * 0.001);
+    rotateY(theta * mouseX * 0.001);
+    texture(pic);
     sphere(150);
   //constant slow rotation
     theta += 0.05;

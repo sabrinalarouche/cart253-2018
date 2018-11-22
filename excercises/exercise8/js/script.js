@@ -59,6 +59,7 @@ function draw(){
   //constant slow rotation
     theta += 0.05;
   pop();
+  //Sphere with image texture
   push();
   translate(width/3,height/3);
   //moves according to the mouse

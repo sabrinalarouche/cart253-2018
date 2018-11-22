@@ -8,14 +8,16 @@ author, and this description to match your project!
 
 ******************/
 var boxes = [];
+var locX;
+var locY;
 
 // preload()
 //
 // Description of preload
 function preload(){
+//Array of boxes
   for (var i = 0; i < 10; i++) {
-    boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,50,2));
-
+    boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,100,2));
   }
 }
 // setup()
@@ -23,31 +25,37 @@ function preload(){
 // Description of setup
 function setup() {
   createCanvas(windowWidth,windowHeight,WEBGL);
-
+  locX = mouseX - height / 2;
+  locY = mouseY - width / 2;
 }
 
 // draw()
 //
 // Description of draw()
 function draw(){
+  ambientLight(60, 60, 60);
+  pointLight(255, 255, 255, locX, locY, 100);
   translate(-width/2,-height/2);
   background(0);
+  //boxes move right
   for (var i = 0; i < 10; i++) {
     if(boxes[i].moveRight === true){
       boxes[i].angle += 0.01;
-      fill(255,0,0);
     }
   }
+  //when if is true, boxes move left
   for (var i = 0; i < 10; i++) {
     if(boxes[i].moveLeft === true){
       boxes[i].angle += -0.01;
     }
   }
+  //when if is true, boxes move up
     for (var i = 0; i < 10; i++) {
       if(boxes[i].moveUp === true){
         boxes[i].rotate += 0.01;
       }
     }
+  //when if is true, boxes move down
     for (var i = 0; i < 10; i++) {
       if(boxes[i].moveDown === true){
         boxes[i].rotate += -0.01;
@@ -58,6 +66,7 @@ function draw(){
   }
 
   function keyPressed(){
+  //boxes move right when "d" is pressed, since if is true.
     if(key ==="d"){
       for (var i = 0; i < 10; i++) {
         boxes[i].moveRight = true;

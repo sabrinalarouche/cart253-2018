@@ -19,8 +19,10 @@ Box.prototype.display = function () {
   rotateX(this.rotate);
   rotateY(this.angle);
   scale(this.scaleFactor);
+  normalMaterial();
   box(this.size);
   pop();
+
 }
 
 Box.prototype.update = function () {

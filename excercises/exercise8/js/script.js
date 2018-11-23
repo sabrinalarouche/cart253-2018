@@ -1,11 +1,13 @@
 /*****************
 
-Title of Project
-Author Name
+Exercise 8
+Sabrina Larouche
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
-
+For this exercise I wanted to explore arrays again as well as 3D objects.
+I added onto what I created last exercise but changed the array to 3D boxes that stay in one spot and that rotate using WASD.
+The boxes use a material for colour which is effected by light from the left.
+As the boxes are rotated the light source changes shifting the colours.
+I then added 2 spheres that have a texture of an image and a video, that rotate constantly but faster as the mouse is closer to it. Slower as its further away.
 ******************/
 //Variables
 var boxes = [];
@@ -35,6 +37,7 @@ function setup() {
   vid.elt.muted = true;
   vid.loop();
   vid.hide();
+  //define image for sphere
   pic = loadImage("assets/images/colour.jpeg")
 }
 

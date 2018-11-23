@@ -14,6 +14,7 @@ function Box(x,y,vx,vy,size,speed) {
   this.moveDown =false;
   }
 Box.prototype.display = function () {
+  //Display boxes
   push();
   translate(this.x,this.y);
   rotateX(this.rotate);
@@ -22,7 +23,6 @@ Box.prototype.display = function () {
   normalMaterial();
   box(this.size);
   pop();
-
 }
 
 Box.prototype.update = function () {

@@ -1,10 +1,9 @@
 /*****************
 
-Title of Project
-Author Name
+Project 3
+Sabrina Larouche
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+
 
 ******************/
 
@@ -22,7 +21,7 @@ function preload() {
 // Description of setup
 
 function setup() {
-
+createCanvas(windowWidth,windowHeight,WEBGL);
 }
 
 
@@ -31,5 +30,8 @@ function setup() {
 // Description of draw()
 
 function draw() {
-
+  translate(150,0,150);
+  background(0);
+  box(150,150,150);
+  fill(255);
 }

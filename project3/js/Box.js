@@ -17,7 +17,7 @@ function Box(x,y,vx,vy,size,speed,image) {
 Box.prototype.display = function () {
   //Display boxes
   push();
-  translate(this.x,this.y);
+  translate(this.x,this.y,-150);
   rotateX(this.rotate);
   rotateY(this.angle);
   scale(this.scaleFactor);

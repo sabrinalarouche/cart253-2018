@@ -17,18 +17,20 @@ var locX;
 var locY;
 var bg;
 var images =[];
+var avatar;
+var avatarX;
+var avatarY;
 // preload()
 //
 // Description of preload
 function preload(){
-
   images.push(loadImage("assets/images/image1.jpg"));
   images.push(loadImage("assets/images/image2.jpg"));
   images.push(loadImage("assets/images/image3.jpg"));
   images.push(loadImage("assets/images/image4.png"));
   images.push(loadImage("assets/images/image5.jpg"));
 //Array of boxes
-
+  avatar= loadImage("assets/images/ufo.png");
   bg = loadImage("assets/images/galaxy.png");
 }
 // setup()
@@ -42,7 +44,8 @@ function setup() {
   //define location
   locX = mouseX - height / 2;
   locY = mouseY - width / 2;
-
+  avatarX = width/2;
+  avatarY = height/2;
 }
 
 function draw(){
@@ -50,11 +53,10 @@ function draw(){
   translate(-width/2,-height/2);
   push();
   texture(bg);
-  translate(width/2,height/2, 0);
-  //fil()
-   plane(windowWidth,windowHeight);
-   pop();
-  
+  translate(width/2,height/2, -200);
+  plane(windowWidth*2,windowHeight*2);
+  pop();
+
   //boxes move right
   for (var i = 0; i < 5; i++) {
     if(boxes[i].moveRight === true){
@@ -81,6 +83,19 @@ function draw(){
       boxes[i].update();
       boxes[i].display();
     }
+
+  var xDistance = mouseX - avatarX;
+    var yDistance = mouseY - avatarY;
+
+    avatarX = avatarX + xDistance;
+    avatarY = avatarY + yDistance;
+
+    push();
+    translate(avatarX,avatarY);
+    texture(avatar);
+    plane(120);
+    pop();
+
   }
 
   function keyPressed(){

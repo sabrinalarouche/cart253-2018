@@ -22,16 +22,23 @@ var avatarX;
 var avatarY;
 var state = "TITLE";
 var pg;
-
+var sounds = [];
 // preload()
 //
 // Description of preload
 function preload(){
+  //Array of images
   images.push(loadImage("assets/images/image1.jpg"));
   images.push(loadImage("assets/images/image2.jpg"));
   images.push(loadImage("assets/images/image3.jpg"));
   images.push(loadImage("assets/images/image4.png"));
   images.push(loadImage("assets/images/image5.jpg"));
+  //Array of sounds
+  sounds.push(loadSound("assets/sounds/sound1.mp3"));
+  sounds.push(loadSound("assets/sounds/sound2.mp3"));
+  sounds.push(loadSound("assets/sounds/sound3.mp3"));
+  sounds.push(loadSound("assets/sounds/sound4.mp3"));
+  sounds.push(loadSound("assets/sounds/sound5.mp3"));
   //Array of boxes
   avatar= loadImage("assets/images/ufo.png");
   bg = loadImage("assets/images/galaxy.png");
@@ -165,4 +172,20 @@ function keyReleased() {
     boxes[i].moveUp =false;
     boxes[i].moveDown =false;
   }
+}
+
+function mousePressed() {
+for (var i = 0; i < boxes.length; i++){
+  var distance = dist(mouseX,mouseY,boxes[i].x,boxes[i].y);
+  if (distance < boxes[i].size/2) {
+      for(var j = 0; j < sounds.length; j++){
+        if (sounds[j].isPlaying()){
+          sounds[j].stop();
+        }
+      }
+
+    sounds[i].play();
+    playOnce = true;
+  }
+}
 }

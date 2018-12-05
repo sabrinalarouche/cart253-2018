@@ -42,7 +42,7 @@ var imageSmallMusic = [];
 var imageSmallLeaders = [];
 var imageSmallEvents = [];
 var imageSmallWar = [];
-
+var alien
 // preload()
 //
 // Description of preload
@@ -96,6 +96,7 @@ function preload(){
   //Array of boxes
   avatar= loadImage("assets/images/ufo.png");
   bg = loadImage("assets/images/galaxy.png");
+  alien = loadImage("assets/images/alien.png")
 }
 // setup()
 //
@@ -112,10 +113,10 @@ function setup() {
   locY = mouseY - width / 2;
   avatarX = width/2;
   avatarY = height/2;
-  pg = createGraphics(256,256);
-}
+  pg = createGraphics(800,800);
+  }
 
-function draw(){
+  function draw(){
   background(0);
   switch (state) {
     case "TITLE":
@@ -130,16 +131,18 @@ function draw(){
       break;
     }
   }
-}
+  }
 
-function displayTitle(){
+  function displayTitle(){
 
   pg.background(0);
-  pg.fill(255,0,0);
-  pg.text('You are an alien riding in your UFO threw space. You then discover knowledge boxes sent from earth.\n You decide to explore them and see what earth has to offer.\n Start your mission using SPACE\n Use WASD to rotate the boxes\n Click the box to see what happens', 50, 50);
+  pg.fill(0,0,255);
+  pg.textSize(18);
+  pg.text('You are an alien riding in your UFO threw space.\nYou then discover knowledge boxes sent from earth.\nYou decide to explore them and see what earth has to offer.\nStart your mission using SPACE\nUse WASD to rotate the boxes\nClick the box to see what happens', 50, 50);
   //pass graphics as texture
+  pg.image(alien,300,200,300,425);
   texture(pg);
-  plane(600);
+  plane(750);
   // Plays game if space is pressed
   if (keyIsPressed && key === ' ') {
     console.log("key ");

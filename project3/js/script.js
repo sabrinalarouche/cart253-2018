@@ -2,6 +2,15 @@
 
 Project 3
 Sabrina Larouche
+For this project I wanted to create a more abstract art piece using, 3D, sound, images, and movement.
+The concept is that you are an alien in a UFO moving around with the mouse. Earth has sent up boxes into space that hold information of things our earth contains.
+I just chose 5 themes among many that represent earth: war, world events, leaders, music and space exploration.
+The user used WASD to rotate the boxes to look at all sides with different images regarding the theme.
+As you click on a box, audio will play and the top will disappear revealing an "object" which is an image.
+
+Sources:
+Audio from Youtube converted to MP3 audio
+Images are from Google
 
 
 
@@ -28,6 +37,12 @@ var imagesLeaders = [];
 var imagesMusic = [];
 var imagesWar = [];
 var imagesEvents = [];
+var imageSmallMoon = [];
+var imageSmallMusic = [];
+var imageSmallLeaders = [];
+var imageSmallEvents = [];
+var imageSmallWar = [];
+
 // preload()
 //
 // Description of preload
@@ -39,7 +54,7 @@ function preload(){
   imagesMoon.push(loadImage("assets/images/moon/image4.jpeg"));
   imagesMoon.push(loadImage("assets/images/moon/image5.jpg"));
   imagesMoon.push(loadImage("assets/images/moon/image6.jpg"));
-
+  imageSmallMoon.push(loadImage("assets/images/moon/rocket.png"));
   //Array of Leader images
   imagesLeaders.push(loadImage("assets/images/leaders/image1.jpg"));
   imagesLeaders.push(loadImage("assets/images/leaders/image2.jpg"));
@@ -47,6 +62,7 @@ function preload(){
   imagesLeaders.push(loadImage("assets/images/leaders/image4.jpg"));
   imagesLeaders.push(loadImage("assets/images/leaders/image5.jpg"));
   imagesLeaders.push(loadImage("assets/images/leaders/image6.jpg"));
+  imageSmallLeaders.push(loadImage("assets/images/leaders/peace.png"));
   //Array of Music images
   imagesMusic.push(loadImage("assets/images/music/image1.jpg"));
   imagesMusic.push(loadImage("assets/images/music/image2.jpg"));
@@ -54,6 +70,7 @@ function preload(){
   imagesMusic.push(loadImage("assets/images/music/image4.jpg"));
   imagesMusic.push(loadImage("assets/images/music/image5.jpeg"));
   imagesMusic.push(loadImage("assets/images/music/image6.jpg"));
+  imageSmallMusic.push(loadImage("assets/images/music/radio.png"));
   //Array of Events images
   imagesEvents.push(loadImage("assets/images/events/image1.jpg"));
   imagesEvents.push(loadImage("assets/images/events/image2.jpg"));
@@ -61,6 +78,7 @@ function preload(){
   imagesEvents.push(loadImage("assets/images/events/image4.jpg"));
   imagesEvents.push(loadImage("assets/images/events/image5.jpeg"));
   imagesEvents.push(loadImage("assets/images/events/image6.jpg"));
+  imageSmallEvents.push(loadImage("assets/images/events/calendar.png"));
   //Array of War images
   imagesWar.push(loadImage("assets/images/war/image1.jpg"));
   imagesWar.push(loadImage("assets/images/war/image2.jpg"));
@@ -68,7 +86,7 @@ function preload(){
   imagesWar.push(loadImage("assets/images/war/image4.jpg"));
   imagesWar.push(loadImage("assets/images/war/image5.jpg"));
   imagesWar.push(loadImage("assets/images/war/image6.jpg"));
-
+  imageSmallWar.push(loadImage("assets/images/war/gun.png"));
   // //Array of sounds
   sounds.push(loadSound("assets/sounds/sound1.mp3"));
   sounds.push(loadSound("assets/sounds/sound2.mp3"));
@@ -84,11 +102,11 @@ function preload(){
 // Description of setup
 function setup() {
   createCanvas(windowWidth,windowHeight,WEBGL);
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesMusic));
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesLeaders));
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesWar));
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesEvents));
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesMoon));
+  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesMusic,imageSmallMusic[0],150));
+  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesLeaders,imageSmallLeaders[0],150));
+  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesWar,imageSmallWar[0],150));
+  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesEvents,imageSmallEvents[0],150));
+  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesMoon,imageSmallMoon[0],150));
   //define location
   locX = mouseX - height / 2;
   locY = mouseY - width / 2;
@@ -216,6 +234,7 @@ function mousePressed() {
   for (var i = 0; i < boxes.length; i++){
     var distance = dist(mouseX,mouseY,boxes[i].x,boxes[i].y);
     if (distance < boxes[i].size/2) {
+      boxes[i].topHidden =true;
       for(var j = 0; j < sounds.length; j++){
         if (sounds[j].isPlaying()){
           sounds[j].stop();
@@ -223,6 +242,9 @@ function mousePressed() {
       }
       sounds[i].play();
       playOnce = true;
+    }
+    else{
+        boxes[i].topHidden =false;
     }
   }
 }

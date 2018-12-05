@@ -1,4 +1,4 @@
-function Box(x,y,vx,vy,size,speed,image) {
+function Box(x,y,vx,vy,size,speed,image,imageSmall,sizeSmall) {
   this.x = x;
   this.y = y;
   this.vx = vx;
@@ -13,6 +13,9 @@ function Box(x,y,vx,vy,size,speed,image) {
   this.moveUp =false;
   this.moveDown =false;
   this.image = image;
+  this.topHidden =false;
+  this.imageSmall = imageSmall;
+  this.sizeSmall = sizeSmall;
   }
 Box.prototype.display = function () {
   //Display boxes
@@ -43,8 +46,19 @@ Box.prototype.display = function () {
   push();
   rotateX(PI/2);
   translate(0,this.size/2,this.size/2);
+  //top
+  //when the topHidden is false, you see all sides of the box including the top
+  if(this.topHidden ===false){
   texture(this.image[4]);
   plane(this.size);
+}
+//when the topHidden is true, the top disappears and a image of an object relating to the theme comes out of the box.
+else if(this.topHidden ===true){
+  rotateX(PI/-2);
+  translate(0,-this.size/2,this.size/2);
+  texture(this.imageSmall);
+  plane(this.sizeSmall);
+}
   pop();
   push();
   rotateX(PI/2);
@@ -52,7 +66,7 @@ Box.prototype.display = function () {
   texture(this.image[5]);
   plane(this.size);
   pop();
-  pop();
+ pop();
 }
 
 Box.prototype.update = function () {

@@ -55,7 +55,7 @@ Box.prototype.display = function () {
 //when the topHidden is true, the top disappears and a image of an object relating to the theme comes out of the box.
 else if(this.topHidden ===true){
   rotateX(PI/-2);
-  translate(0,-this.size/2,this.size/2);
+  translate(0,-this.size/2,0);
   texture(this.imageSmall);
   plane(this.sizeSmall);
 }

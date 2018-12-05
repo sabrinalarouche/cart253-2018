@@ -102,11 +102,11 @@ function preload(){
 // Description of setup
 function setup() {
   createCanvas(windowWidth,windowHeight,WEBGL);
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesMusic,imageSmallMusic[0],150));
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesLeaders,imageSmallLeaders[0],150));
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesWar,imageSmallWar[0],150));
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesEvents,imageSmallEvents[0],150));
-  boxes.push(new Box(random(0,windowWidth),random(0,windowHeight),0,0,200,2,imagesMoon,imageSmallMoon[0],150));
+  boxes.push(new Box(random(100,windowWidth-100),random(100,windowHeight-100),0,0,200,2,imagesMusic,imageSmallMusic[0],150));
+  boxes.push(new Box(random(100,windowWidth-100),random(100,windowHeight-100),0,0,200,2,imagesLeaders,imageSmallLeaders[0],150));
+  boxes.push(new Box(random(100,windowWidth-100),random(100,windowHeight-100),0,0,200,2,imagesWar,imageSmallWar[0],150));
+  boxes.push(new Box(random(100,windowWidth-100),random(100,windowHeight-100),0,0,200,2,imagesEvents,imageSmallEvents[0],150));
+  boxes.push(new Box(random(100,windowWidth-100),random(100,windowHeight-100),0,0,200,2,imagesMoon,imageSmallMoon[0],150));
   //define location
   locX = mouseX - height / 2;
   locY = mouseY - width / 2;
@@ -136,10 +136,10 @@ function displayTitle(){
 
   pg.background(0);
   pg.fill(255,0,0);
-  pg.text('Our world...', 50, 50);
+  pg.text('You are an alien riding in your UFO threw space. You then discover knowledge boxes sent from earth.\n You decide to explore them and see what earth has to offer.\n Start your mission using SPACE\n Use WASD to rotate the boxes\n Click the box to see what happens', 50, 50);
   //pass graphics as texture
   texture(pg);
-  plane(1000);
+  plane(600);
   // Plays game if space is pressed
   if (keyIsPressed && key === ' ') {
     console.log("key ");
@@ -188,7 +188,7 @@ function displayGame(){
   avatarY = avatarY + yDistance;
 
   push();
-  translate(avatarX,avatarY);
+  translate(avatarX,avatarY,100);
   texture(avatar);
   plane(120);
   pop();

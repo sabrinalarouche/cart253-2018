@@ -113,7 +113,7 @@ function setup() {
   locY = mouseY - width / 2;
   avatarX = width/2;
   avatarY = height/2;
-  pg = createGraphics(800,800);
+  pg = createGraphics(windowWidth,windowHeight);
   }
 
   function draw(){
@@ -134,15 +134,16 @@ function setup() {
   }
 
   function displayTitle(){
-
-  pg.background(0);
-  pg.fill(0,0,255);
-  pg.textSize(18);
-  pg.text('You are an alien riding in your UFO threw space.\nYou then discover knowledge boxes sent from earth.\nYou decide to explore them and see what earth has to offer.\nStart your mission using SPACE\nUse WASD to rotate the boxes\nClick the box to see what happens', 50, 50);
+  pg.background(bg);
+  pg.fill(255);
+  pg.textSize(24);
+  pg.textFont("Space Mono");
+  pg.textAlign(LEFT);
+  pg.text('You are an alien riding in your UFO threw space.\nYou then discover knowledge boxes sent from earth.\nYou decide to explore them and see what earth has to offer.\nStart your mission using SPACE\nUse WASD to rotate the boxes\nClick the box to see what happens',pg.width/2 -pg.width/5,pg.height/2);
   //pass graphics as texture
-  pg.image(alien,300,200,300,425);
+  pg.image(alien,width-alien.width/1.5,height/2,alien.width/2,alien.height/2);
   texture(pg);
-  plane(750);
+  plane(windowWidth,windowHeight);
   // Plays game if space is pressed
   if (keyIsPressed && key === ' ') {
     console.log("key ");
